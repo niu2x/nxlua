@@ -5,11 +5,9 @@
 ------------------------------------------------------------------------------
 local PFX = '__lsn_'
 local PFX_LEN = #PFX
-local Events = { defaultMaxListeners = 10 }
 
-setmetatable(Events, {
-    __call = function (_, ...) return Events:new(...) end
-})
+local class = require 'nxlua.class'
+local Events = class()
 
 local function rmEntry(tbl, pred)
     local x, len = 0, #tbl
@@ -28,13 +26,9 @@ local function rmEntry(tbl, pred)
     return tbl
 end
 
-function Events:new(obj)
-    obj = obj or {}
-    self.__index = self
-    setmetatable(obj, self)
-    obj._on = {}
-
-    return obj
+function Events:ctor(obj)
+    self.defaultMaxListeners = 1024
+    self._on = {}
 end
 
 function Events:evTable(ev)
