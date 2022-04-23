@@ -15,6 +15,10 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
-add_subdirectory(dependencies/lua-5.1.5)
-add_subdirectory(src/cpp/nxlua)
+add_compile_definitions(CMAKE_PROJECT_NAME=${CMAKE_PROJECT_NAME})
 
+add_subdirectory(dependencies/lua-5.1.5)
+add_subdirectory(dependencies/cxxopts)
+add_subdirectory(dependencies/cpp-linenoise)
+
+add_subdirectory(src/cpp/nxlua)
