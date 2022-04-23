@@ -63,7 +63,6 @@ endif()
 if(MSVC)
     add_definitions(-D_CRT_SECURE_NO_WARNINGS)
     add_definitions(-Dinline=__inline)
-    add_definitions(-Dsnprintf=_snprintf)
     add_definitions(-Dstrncasecmp=_strnicmp)
 endif()
 
