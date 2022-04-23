@@ -58,7 +58,13 @@ static void run(lua_State* L, const char* input_file)
     luaL_dofile(L, input_file);
 }
 
-static void open_libs(lua_State* L) { luaL_openlibs(L); }
+extern void pure_lua_open(lua_State* L);
+
+static void open_libs(lua_State* L)
+{
+    luaL_openlibs(L);
+    pure_lua_open(L);
+}
 
 int main(int argc, char* argv[], char* env[])
 {

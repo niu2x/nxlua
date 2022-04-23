@@ -1,3 +1,5 @@
+#include "class.h"
+static const char* source = R"RAW(
 local baseClass = {class = true}
 baseClass.__index = baseClass
 
@@ -21,3 +23,6 @@ local function class(super)
 end
 
 _G.class = class
+)RAW";
+
+void pure_lua_class_open(lua_State* L) { luaL_dostring(L, source); }
