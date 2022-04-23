@@ -4,12 +4,14 @@ extern "C" {
 #include <lauxlib.h>
 }
 
-#include <linenoise.hpp>
-
 #include <string>
 
-#define stringify(s)   __stringify(s)
-#define __stringify(s) #s
+extern void pure_lua_open(lua_State* L);
+
+extern "C" {
+extern void dotty(lua_State* L);
+LUALIB_API int luaopen_bit(lua_State* L);
+}
 
 struct params_t {
     char* input_file;
@@ -23,46 +25,16 @@ static void params_parse(struct params_t* self, int argc, char* argv[])
     }
 }
 
-static void run_interactive(lua_State* L)
-{
-    linenoise::SetCompletionCallback(
-        [](const char* editBuffer, std::vector<std::string>& completions) {
-            // if (editBuffer[0] == 'h') {
-            //     completions.push_back("hello");
-            //     completions.push_back("hello there");
-            // }
-        });
-
-    linenoise::SetMultiLine(true);
-    linenoise::SetHistoryMaxLen(1024);
-
-    while (true) {
-        std::string line;
-        auto quit = linenoise::Readline("> ", line);
-
-        if (quit) {
-            break;
-        }
-
-        auto ret = luaL_dostring(L, line.c_str());
-        if (ret != 0) {
-            auto msg = lua_tostring(L, -1);
-            std::cerr << msg;
-        }
-
-        linenoise::AddHistory(line.c_str());
-    }
-}
+static void run_interactive(lua_State* L) { dotty(L); }
 static void run(lua_State* L, const char* input_file)
 {
     luaL_dofile(L, input_file);
 }
 
-extern void pure_lua_open(lua_State* L);
-
 static void open_libs(lua_State* L)
 {
     luaL_openlibs(L);
+    luaopen_bit(L);
     pure_lua_open(L);
 }
 

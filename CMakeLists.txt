@@ -19,6 +19,6 @@ add_compile_definitions(CMAKE_PROJECT_NAME=${CMAKE_PROJECT_NAME})
 
 add_subdirectory(dependencies/lua-5.1.5)
 add_subdirectory(dependencies/cxxopts)
-add_subdirectory(dependencies/cpp-linenoise)
+add_subdirectory(dependencies/LuaBitOp-1.0.2)
 
 add_subdirectory(src/cpp/nxlua)
