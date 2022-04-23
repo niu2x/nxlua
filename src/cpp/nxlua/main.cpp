@@ -8,6 +8,7 @@ extern "C" {
 
 extern "C" {
 LUALIB_API int luaopen_bit(lua_State* L);
+extern int luaopen_cjson(lua_State* l);
 }
 
 extern void pure_lua_open(lua_State* L);
@@ -35,6 +36,7 @@ static void open_libs(lua_State* L)
 {
     luaL_openlibs(L);
     luaopen_bit(L);
+    luaopen_cjson(L);
     pure_lua_open(L);
 }
 

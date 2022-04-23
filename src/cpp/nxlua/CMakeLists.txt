@@ -12,4 +12,5 @@ target_link_libraries(nxlua
 	luabitop
 	lua-5.1.5 
 	linenoise
+	cjson
 )
