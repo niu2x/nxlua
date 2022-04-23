@@ -11,8 +11,8 @@ env:
   BUILD_TYPE: Release
 
 jobs:
-  linux-release:
-    name: "Tagged Release"
+  linux-build:
+    name: "linux build"
     runs-on: "ubuntu-latest"
 
     steps:
@@ -23,14 +23,14 @@ jobs:
           cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
           cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
 
-      # - uses: "marvinpinto/action-automatic-releases@latest"
-      #   with:
-      #     repo_token: "${{ secrets.GITHUB_TOKEN }}"
-      #     prerelease: false
-      #     files: |
-      #       ${{github.workspace}}/build/bin/nxlua
-  windows-release:
-    name: "Tagged Release"
+      - uses: actions/upload-artifact@master
+        with:
+          name: linux-artifact
+          path: ${{github.workspace}}/build/bin/
+
+      
+  windows-build:
+    name: "windows build"
     runs-on: "windows-latest"
 
     steps:
@@ -41,3 +41,29 @@ jobs:
           cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
           cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
 
+      - uses: actions/upload-artifact@master
+        with:
+          name: windows-artifact
+          path: ${{github.workspace}}/build/bin/
+
+  release:
+    name: "release"
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: actions/download-artifact@master
+        with:
+          name: linux-artifact
+          path: linux/
+
+      - uses: actions/download-artifact@master
+        with:
+          name: window-artifact
+          path: window/
+
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false
+          files: |
+            window
+            linux
