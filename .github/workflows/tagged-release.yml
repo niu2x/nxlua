@@ -49,9 +49,9 @@ jobs:
   release:
     name: "release"
     runs-on: "ubuntu-latest"
-    needs: |
-      linux-build
-      windows-build
+    needs:
+      - linux-build
+      - windows-build
     steps:
       - uses: actions/download-artifact@master
         with:
