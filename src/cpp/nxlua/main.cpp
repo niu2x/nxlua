@@ -18,6 +18,9 @@ struct params_t {
 static void params_parse(struct params_t* self, int argc, char* argv[])
 {
     self->input_file = nullptr;
+    if (argc >= 2) {
+        self->input_file = argv[1];
+    }
 }
 
 static void run_interactive(lua_State* L)
