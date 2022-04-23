@@ -60,13 +60,13 @@ jobs:
 
       - uses: actions/download-artifact@master
         with:
-          name: window-artifact
-          path: window/
+          name: windows-artifact
+          path: windows/
 
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: false
           files: |
-            window
+            windows
             linux
