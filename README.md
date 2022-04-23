@@ -1,5 +1,7 @@
-# nxlua
+# Get Start
+[Binaries Download](https://github.com/niu2x/nxlua/releases)
 
+# Documents
 ## class
 
 ## bit
@@ -15,3 +17,6 @@
 	- ror
 	- bswap
 	- tohex
+## cjson
+	- encode
+	- decode
