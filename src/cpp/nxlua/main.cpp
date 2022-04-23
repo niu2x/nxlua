@@ -1,17 +1,17 @@
+#include <string>
+
 extern "C" {
 #include <lua.h>
 #include <lualib.h>
 #include <lauxlib.h>
 }
 
-#include <string>
-
-extern void pure_lua_open(lua_State* L);
-
 extern "C" {
-extern void dotty(lua_State* L);
 LUALIB_API int luaopen_bit(lua_State* L);
 }
+
+extern void pure_lua_open(lua_State* L);
+extern void dotty(lua_State* L);
 
 struct params_t {
     char* input_file;

@@ -5,10 +5,17 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include <string>
+
 #define lua_c
+
+extern "C" {
 #include <lua.h>
 #include <lualib.h>
 #include <lauxlib.h>
+}
+
+#include <linenoise.hpp>
 
 #define stringify(s)   __stringify(s)
 #define __stringify(s) #s
@@ -66,12 +73,18 @@ static const char* get_prompt(lua_State* L, int firstline)
 
 static int pushline(lua_State* L, int firstline)
 {
-    char buffer[LUA_MAXINPUT];
-    char* b = buffer;
+
+    char* b = 0;
     size_t l;
     const char* prmt = get_prompt(L, firstline);
-    if (lua_readline(L, b, prmt) == 0)
-        return 0; /* no input */
+
+    std::string line;
+    auto quit = linenoise::Readline(prmt, line);
+
+    if (quit || line.size() == 0)
+        return 0;
+    b = (char*)line.c_str();
+
     l = strlen(b);
     if (l > 0 && b[l - 1] == '\n') /* line ends with newline? */
         b[l - 1] = '\0'; /* remove it */
@@ -100,7 +113,7 @@ static int loadline(lua_State* L)
         lua_insert(L, -2); /* ...between the two lines */
         lua_concat(L, 3); /* join them */
     }
-    lua_saveline(L, 1);
+    linenoise::AddHistory(lua_tostring(L, 1));
     lua_remove(L, 1); /* remove line */
     return status;
 }
@@ -155,6 +168,18 @@ static int docall(lua_State* L, int narg, int clear)
 
 void dotty(lua_State* L)
 {
+
+    linenoise::SetCompletionCallback(
+        [](const char* editBuffer, std::vector<std::string>& completions) {
+            // if (editBuffer[0] == 'h') {
+            //     completions.push_back("hello");
+            //     completions.push_back("hello there");
+            // }
+        });
+
+    linenoise::SetMultiLine(true);
+    linenoise::SetHistoryMaxLen(1024);
+
     globalL = L;
     int status;
     const char* oldprogname = progname;
