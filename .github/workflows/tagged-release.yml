@@ -6,6 +6,10 @@ on:
     tags:
       - "v*"
 
+env:
+  # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
+  BUILD_TYPE: Release
+  
 jobs:
   tagged-release:
     name: "Tagged Release"
@@ -15,7 +19,8 @@ jobs:
       # ...
       - name: "Build & test"
         run: |
-          mkdir build && cd build && cmake .. && cmake --build . -j
+          cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+          cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
 
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
@@ -23,4 +28,4 @@ jobs:
           prerelease: false
           files: |
             LICENSE.txt
-            build/bin/nxlua
+            ${{github.workspace}}/build/bin/nxlua
