@@ -11,22 +11,33 @@ env:
   BUILD_TYPE: Release
 
 jobs:
-  tagged-release:
+  linux-release:
     name: "Tagged Release"
     runs-on: "ubuntu-latest"
 
     steps:
       - uses: actions/checkout@v3
-      
+
       - name: "Build & test"
         run: |
           cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
           cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
 
-      - uses: "marvinpinto/action-automatic-releases@latest"
-        with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          prerelease: false
-          files: |
-            LICENSE.txt
-            ${{github.workspace}}/build/bin/nxlua
+      # - uses: "marvinpinto/action-automatic-releases@latest"
+      #   with:
+      #     repo_token: "${{ secrets.GITHUB_TOKEN }}"
+      #     prerelease: false
+      #     files: |
+      #       ${{github.workspace}}/build/bin/nxlua
+  windows-release:
+    name: "Tagged Release"
+    runs-on: "windows-latest"
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: "Build & test"
+        run: |
+          cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+          cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
+
