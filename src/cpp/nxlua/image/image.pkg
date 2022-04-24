@@ -2,12 +2,48 @@ $#include "image/image.h"
 
 $using namespace nxlua;
 
+
+class image_transform_t @ ImageTransform {
+public:
+    static image_transform_t translate(double, double);
+    static image_transform_t scale(double, double);
+    static image_transform_t rotate(double);
+
+    image_transform_t();
+    ~image_transform_t();
+
+    boost::gil::matrix3x2<double>& backend() { return mat_; }
+    const boost::gil::matrix3x2<double>& backend() const { return mat_; }
+
+    image_transform_t mul(const image_transform_t &right) const ;
+
+};
+
 class image_t @ Image {
+
+	typedef struct  {
+	        int r,g,b,a;
+	}color_t;
+
 	image_t();
 	~image_t();
     bool load(const char*);
     bool save(const char*);
 
-    static void resample_subimage(image_t* src, image_t* dst, int src_min_x,
-        int src_min_y, int src_max_x, int src_max_y, double angle);
+    void resize(int width, int height);
+
+    int width() const ;
+
+    int height() const ;
+
+    color_t pixel(int x, int y) const;
+
+    static void resample(image_t* src, int src_min_x, int src_min_y,
+        int src_width, int src_height,
+
+        image_t* dst, int dst_min_x, int dst_min_y, int dst_width,
+        int dst_height,
+
+        const image_transform_t*);
+
 };

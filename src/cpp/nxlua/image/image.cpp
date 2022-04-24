@@ -1,10 +1,5 @@
 #include "image.h"
 
-#include <boost/gil/image.hpp>
-#include <boost/gil/typedefs.hpp>
-#include <boost/gil/extension/numeric/sampler.hpp>
-#include <boost/gil/extension/numeric/resample.hpp>
-
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>
 
@@ -82,12 +77,60 @@ void image_t::resize(int width, int height)
     image_ = std::make_unique<bg::rgba8_image_t>(width, height);
 }
 
-void image_t::resample_subimage(image_t* src, image_t* dst, int src_min_x,
-    int src_min_y, int src_max_x, int src_max_y, double angle)
+void image_t::resample(image_t* src, int src_min_x, int src_min_y,
+    int src_width, int src_height,
+
+    image_t* dst, int dst_min_x, int dst_min_y, int dst_width, int dst_height,
+
+    const image_transform_t* dst_to_src)
 {
-    bg::resample_subimage(bg::const_view(src->backend()),
-        bg::view(dst->backend()), src_min_x, src_min_y, src_max_x, src_max_y,
-        angle, bg::bilinear_sampler());
+
+    bg::resample_pixels(bg::subimage_view(bg::const_view(src->backend()),
+                            src_min_x, src_min_y, src_width, src_height),
+        bg::subimage_view(bg::view(dst->backend()), dst_min_x, dst_min_y,
+            dst_width, dst_height),
+        dst_to_src->backend(), bg::bilinear_sampler());
+}
+
+image_t::color_t image_t::pixel(int x, int y) const
+{
+    auto view = bg::const_view(backend());
+    auto ref = view(x, y);
+    return {
+        (ref)[0],
+        (ref)[1],
+        (ref)[2],
+        (ref)[3],
+    };
+}
+
+image_transform_t image_transform_t::translate(double x, double y)
+{
+    image_transform_t t;
+    t.mat_ = bg::matrix3x2<double>::get_translate(x, y);
+    return t;
+}
+image_transform_t image_transform_t::scale(double x, double y)
+{
+    image_transform_t t;
+    t.mat_ = bg::matrix3x2<double>::get_scale(x, y);
+    return t;
+}
+image_transform_t image_transform_t::rotate(double angle)
+{
+    image_transform_t t;
+    t.mat_ = bg::matrix3x2<double>::get_rotate(angle);
+    return t;
+}
+
+image_transform_t::image_transform_t() { }
+image_transform_t::~image_transform_t() { }
+
+image_transform_t image_transform_t::mul(const image_transform_t& right) const
+{
+    image_transform_t t;
+    t.mat_ = this->mat_ * right.mat_;
+    return t;
 }
 
 } // namespace nxlua

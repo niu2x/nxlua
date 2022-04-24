@@ -1,4 +1,5 @@
 #include <string>
+#include <iostream>
 
 extern "C" {
 #include <lua.h>
@@ -35,7 +36,9 @@ static void params_parse(struct params_t* self, int argc, char* argv[])
 static void run_interactive(lua_State* L) { dotty(L); }
 static void run(lua_State* L, const char* input_file)
 {
-    luaL_dofile(L, input_file);
+    if (luaL_dofile(L, input_file)) {
+        std::cerr << lua_tostring(L, -1) << std::endl;
+    }
 }
 
 static void open_libs(lua_State* L)
