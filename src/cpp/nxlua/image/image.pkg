@@ -1,0 +1,10 @@
+$#include "image/image.h"
+
+$using namespace nxlua;
+
+class image_t @ Image {
+	image_t();
+	~image_t();
+    bool load(const char*);
+    bool save(const char*);
+};

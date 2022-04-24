@@ -17,4 +17,11 @@ src/cpp/nxlua/pure_lua_open.cpp: $(addprefix src/lua/nxlua/, $(luas)) \
 								m4/pure_lua_open.cpp.m4
 	@m4 -DLUAS="$(luas)" m4/pure_lua_open.cpp.m4 > $@
 
-.PHONY: pure_lua_lib
+tolua: src/cpp/nxlua/tolua/image/image.cpp
+	@echo $^ "=>" $@ 
+
+src/cpp/nxlua/tolua/%.cpp: src/cpp/nxlua/%.pkg
+	mkdir -p $$(dirname $@)
+	tolua++5.1 $< > $@
+
+.PHONY: pure_lua_lib tolua

@@ -81,7 +81,7 @@ static int pushline(lua_State* L, int firstline)
     std::string line;
     auto quit = linenoise::Readline(prmt, line);
 
-    if (quit || line.size() == 0)
+    if (quit)
         return 0;
     b = (char*)line.c_str();
 

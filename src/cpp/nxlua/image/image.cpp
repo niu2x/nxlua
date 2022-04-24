@@ -1,5 +1,10 @@
 #include "image.h"
 
+#include <boost/gil/image.hpp>
+#include <boost/gil/typedefs.hpp>
+#include <boost/gil/extension/numeric/sampler.hpp>
+#include <boost/gil/extension/numeric/resample.hpp>
+
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>
 
@@ -24,11 +29,11 @@ bool image_t::load(const char* filename)
     if (!buffer)
         return false;
 
-    image_ = std::make_unique<bg::rgba8_image_t>(width, height);
+    resize(width, height);
 
     auto* buffer_pixel = buffer;
 
-    auto v = bg::view(*image_.get());
+    auto v = bg::view(backend());
     auto b = v.begin();
     while (b != v.end()) {
         *b = bg::rgba8_pixel_t { buffer_pixel[0], buffer_pixel[1],
@@ -48,7 +53,7 @@ bool image_t::save(const char* filename)
     auto buffer = new uint8_t[image_->width() * image_->height() * COMPS];
     auto buffer_writer = buffer;
 
-    auto v = bg::view(*image_.get());
+    auto v = bg::view(backend());
     auto b = v.begin();
     while (b != v.end()) {
         *(buffer_writer++) = (*b)[0];
@@ -63,6 +68,26 @@ bool image_t::save(const char* filename)
             buffer, image_->width() * COMPS);
     delete[] buffer;
     return success;
+}
+
+// image_t image_t::resize(int width, int height) {
+//     image_t result;
+//     result._resize(width,height);
+//     bg::resize_view(bg::const_view(backend()), bg::view( result.backend() ),
+//     bg::bilinear_sampler()); return result;
+// }
+
+void image_t::resize(int width, int height)
+{
+    image_ = std::make_unique<bg::rgba8_image_t>(width, height);
+}
+
+void image_t::resample_subimage(image_t* src, image_t* dst, int src_min_x,
+    int src_min_y, int src_max_x, int src_max_y, double angle)
+{
+    bg::resample_subimage(bg::const_view(src->backend()),
+        bg::view(dst->backend()), src_min_x, src_min_y, src_max_x, src_max_y,
+        angle, bg::bilinear_sampler());
 }
 
 } // namespace nxlua
