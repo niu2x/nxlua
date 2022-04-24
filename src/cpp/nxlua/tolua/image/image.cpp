@@ -1,6 +1,6 @@
 /*
 ** Lua binding: image
-** Generated automatically by tolua++-1.0.93 on Sun Apr 24 15:49:07 2022.
+** Generated automatically by tolua++-1.0.93 on Mon Apr 25 00:39:03 2022.
 */
 
 #ifndef __cplusplus
@@ -180,6 +180,47 @@ tolua_lerror:
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: resample_subimage of class  image_t */
+#ifndef TOLUA_DISABLE_tolua_image_Image_resample_subimage00
+static int tolua_image_Image_resample_subimage00(lua_State* tolua_S)
+{
+    #ifndef TOLUA_RELEASE
+    tolua_Error tolua_err;
+    if (!tolua_isusertable(tolua_S, 1, "image_t", 0, &tolua_err)
+        || !tolua_isusertype(tolua_S, 2, "image_t", 0, &tolua_err)
+        || !tolua_isusertype(tolua_S, 3, "image_t", 0, &tolua_err)
+        || !tolua_isnumber(tolua_S, 4, 0, &tolua_err)
+        || !tolua_isnumber(tolua_S, 5, 0, &tolua_err)
+        || !tolua_isnumber(tolua_S, 6, 0, &tolua_err)
+        || !tolua_isnumber(tolua_S, 7, 0, &tolua_err)
+        || !tolua_isnumber(tolua_S, 8, 0, &tolua_err)
+        || !tolua_isnoobj(tolua_S, 9, &tolua_err))
+        goto tolua_lerror;
+    else
+    #endif
+    {
+        image_t* src = ((image_t*)tolua_tousertype(tolua_S, 2, 0));
+        image_t* dst = ((image_t*)tolua_tousertype(tolua_S, 3, 0));
+        int src_min_x = ((int)tolua_tonumber(tolua_S, 4, 0));
+        int src_min_y = ((int)tolua_tonumber(tolua_S, 5, 0));
+        int src_max_x = ((int)tolua_tonumber(tolua_S, 6, 0));
+        int src_max_y = ((int)tolua_tonumber(tolua_S, 7, 0));
+        double angle = ((double)tolua_tonumber(tolua_S, 8, 0));
+        {
+            image_t::resample_subimage(
+                src, dst, src_min_x, src_min_y, src_max_x, src_max_y, angle);
+        }
+    }
+    return 0;
+    #ifndef TOLUA_RELEASE
+tolua_lerror:
+    tolua_error(
+        tolua_S, "#ferror in function 'resample_subimage'.", &tolua_err);
+    return 0;
+    #endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* Open function */
 TOLUA_API int tolua_image_open(lua_State* tolua_S)
 {
@@ -199,6 +240,8 @@ TOLUA_API int tolua_image_open(lua_State* tolua_S)
     tolua_function(tolua_S, "delete", tolua_image_Image_delete00);
     tolua_function(tolua_S, "load", tolua_image_Image_load00);
     tolua_function(tolua_S, "save", tolua_image_Image_save00);
+    tolua_function(
+        tolua_S, "resample_subimage", tolua_image_Image_resample_subimage00);
     tolua_endmodule(tolua_S);
     tolua_endmodule(tolua_S);
     return 1;

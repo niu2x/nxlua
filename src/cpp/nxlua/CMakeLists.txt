@@ -8,7 +8,6 @@ target_sources(nxlua PRIVATE
 	${c_source}
 )
 target_link_libraries(nxlua 
-	cxxopts 
 	luabitop
 	lua-5.1.5 
 	linenoise

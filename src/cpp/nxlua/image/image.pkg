@@ -7,4 +7,7 @@ class image_t @ Image {
 	~image_t();
     bool load(const char*);
     bool save(const char*);
+
+    static void resample_subimage(image_t* src, image_t* dst, int src_min_x,
+        int src_min_y, int src_max_x, int src_max_y, double angle);
 };

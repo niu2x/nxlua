@@ -23,6 +23,6 @@ divert(0)dnl
 #include <tolua++.h>
 declare(TOLUA_BASE)
 
-void tolua_open(lua_State* L) {
+void tolua_libs_open(lua_State* L) {
 call(TOLUA_BASE)dnl
 }
