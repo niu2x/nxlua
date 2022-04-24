@@ -16,6 +16,7 @@ extern int luaopen_cjson(lua_State* l);
 TOLUA_API int tolua_image_open(lua_State* tolua_S);
 extern void pure_lua_open(lua_State* L);
 extern void dotty(lua_State* L);
+extern void tolua_libs_open(lua_State* L);
 
 #include "image/image.h"
 
@@ -42,7 +43,7 @@ static void open_libs(lua_State* L)
     luaL_openlibs(L);
     luaopen_bit(L);
     luaopen_cjson(L);
-    tolua_image_open(L);
+    tolua_libs_open(L);
     pure_lua_open(L);
 }
 
