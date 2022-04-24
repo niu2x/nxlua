@@ -14,6 +14,8 @@ extern int luaopen_cjson(lua_State* l);
 extern void pure_lua_open(lua_State* L);
 extern void dotty(lua_State* L);
 
+#include "image/image.h"
+
 struct params_t {
     char* input_file;
 };

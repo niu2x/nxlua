@@ -14,3 +14,7 @@ target_link_libraries(nxlua
 	linenoise
 	cjson
 )
+
+target_include_directories(nxlua PRIVATE ${CMAKE_SOURCE_DIR}/dependencies/)
+target_include_directories(nxlua PRIVATE ${CMAKE_SOURCE_DIR}/dependencies/stb)
+target_include_directories(nxlua PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
