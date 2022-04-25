@@ -10,5 +10,12 @@ c:resize(1024, 1024)
 c:fill(255, 0, 0, 0)
 c:save("./r2.png")
 
-local d=  a:rotate(math.pi/6)
+local d = a:rotate(math.pi/6)
 d:save("./r3.png")
+
+local e = a:scale(0.3)
+e:save("./r4.png")
+
+a:draw(d:scale(0.3), 0, 0)
+
+a:save("./r5.png")

@@ -87,3 +87,40 @@ function Image:crop(x, y, w, h)
 
 	return result
 end
+
+function Image:scaleTo(w, h)
+	local result = Image:new_local()
+	result:resize(w, h)
+
+	local transform = image_transform_t:scale(self:width()/w ,self:height()/h)
+	image_t:resample(
+		self.backend_, 0, 0, self:width(), self:height(),
+		result.backend_, 0, 0, w, h,
+		transform
+	)
+
+	return result
+end
+
+function Image:scale(sx, sy)
+	sy = sy or sx
+	return self:scaleTo(
+		self:width() * sx,
+		self:height() * sy
+	)
+end
+
+-- x, y is lefttop position
+function Image:draw(src, x, y)
+	-- local src_width = src:width()
+	-- local src_height = src:height()
+
+	-- local transform = image_transform_t()
+	-- image_t:resample(
+	-- 	src.backend_, 0, 0, src_width, src_height,
+	-- 	self.backend_, x, y, src_width, src_height,
+	-- 	transform
+	-- )
+	self.backend_:draw(src.backend_, x, y)
+
+end

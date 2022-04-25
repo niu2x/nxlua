@@ -36,6 +36,8 @@ class image_t {
 
     color_t pixel(int x, int y) const;
 
+    void draw(const image_t *src, int x, int y);
+
     static void resample(image_t* src, int src_min_x, int src_min_y,
         int src_width, int src_height,
 

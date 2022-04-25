@@ -1,5 +1,7 @@
 #include "image.h"
 
+#include <boost/gil/algorithm.hpp>
+
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>
 
@@ -83,13 +85,6 @@ void image_t::fill(uint8_t r, uint8_t g, uint8_t b, uint8_t a)
     }
 }
 
-// image_t image_t::resize(int width, int height) {
-//     image_t result;
-//     result._resize(width,height);
-//     bg::resize_view(bg::const_view(backend()), bg::view( result.backend() ),
-//     bg::bilinear_sampler()); return result;
-// }
-
 void image_t::resize(int width, int height)
 {
     image_ = std::make_unique<bg::rgba8_image_t>(width, height);
@@ -149,6 +144,30 @@ image_transform_t image_transform_t::mul(const image_transform_t& right) const
     image_transform_t t;
     t.mat_ = this->mat_ * right.mat_;
     return t;
+}
+
+void image_t::draw(const image_t* src, int x, int y, int blend)
+{
+
+    using Pix = bg::rgba8_pixel_t::value_type;
+
+    bg::transform_pixels(bg::subimage_view(bg::const_view(src->backend()), 0, 0,
+                             src->width(), src->height()),
+
+        bg::subimage_view(
+            bg::view(this->backend()), x, y, src->width(), src->height()),
+
+        bg::subimage_view(
+            bg::view(this->backend()), x, y, src->width(), src->height()),
+
+        [](auto& A, auto& B) {
+            return Pix {
+                ((A[0] * A[0]) >> 8) + ((B[0] * (255 - A[0])) >> 8),
+                ((A[1] * A[0]) >> 8) + ((B[1] * (255 - A[0])) >> 8),
+                ((A[2] * A[0]) >> 8) + ((B[2] * (255 - A[0])) >> 8),
+                ((A[3] * A[0]) >> 8) + ((B[3] * (255 - A[0])) >> 8),
+            };
+        });
 }
 
 } // namespace nxlua

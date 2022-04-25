@@ -1,6 +1,6 @@
 /*
 ** Lua binding: image
-** Generated automatically by tolua++-1.0.93 on Mon Apr 25 11:17:26 2022.
+** Generated automatically by tolua++-1.0.93 on Mon Apr 25 12:12:54 2022.
 */
 
 #ifndef __cplusplus
@@ -763,6 +763,42 @@ tolua_lerror:
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: draw of class  image_t */
+#ifndef TOLUA_DISABLE_tolua_image_image_t_draw00
+static int tolua_image_image_t_draw00(lua_State* tolua_S)
+{
+    #ifndef TOLUA_RELEASE
+    tolua_Error tolua_err;
+    if (!tolua_isusertype(tolua_S, 1, "image_t", 0, &tolua_err)
+        || !tolua_isusertype(tolua_S, 2, "const image_t", 0, &tolua_err)
+        || !tolua_isnumber(tolua_S, 3, 0, &tolua_err)
+        || !tolua_isnumber(tolua_S, 4, 0, &tolua_err)
+        || !tolua_isnoobj(tolua_S, 5, &tolua_err))
+        goto tolua_lerror;
+    else
+    #endif
+    {
+        image_t* self = (image_t*)tolua_tousertype(tolua_S, 1, 0);
+        const image_t* src = ((const image_t*)tolua_tousertype(tolua_S, 2, 0));
+        int x = ((int)tolua_tonumber(tolua_S, 3, 0));
+        int y = ((int)tolua_tonumber(tolua_S, 4, 0));
+    #ifndef TOLUA_RELEASE
+        if (!self)
+            tolua_error(tolua_S, "invalid 'self' in function 'draw'", NULL);
+    #endif
+        {
+            self->draw(src, x, y);
+        }
+    }
+    return 0;
+    #ifndef TOLUA_RELEASE
+tolua_lerror:
+    tolua_error(tolua_S, "#ferror in function 'draw'.", &tolua_err);
+    return 0;
+    #endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: resample of class  image_t */
 #ifndef TOLUA_DISABLE_tolua_image_image_t_resample00
 static int tolua_image_image_t_resample00(lua_State* tolua_S)
@@ -871,6 +907,7 @@ TOLUA_API int tolua_image_open(lua_State* tolua_S)
     tolua_function(tolua_S, "height", tolua_image_image_t_height00);
     tolua_function(tolua_S, "fill", tolua_image_image_t_fill00);
     tolua_function(tolua_S, "pixel", tolua_image_image_t_pixel00);
+    tolua_function(tolua_S, "draw", tolua_image_image_t_draw00);
     tolua_function(tolua_S, "resample", tolua_image_image_t_resample00);
     tolua_endmodule(tolua_S);
     tolua_endmodule(tolua_S);
