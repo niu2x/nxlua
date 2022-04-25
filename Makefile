@@ -25,11 +25,11 @@ src/cpp/nxlua/pure_lua_open.cpp: $(addprefix src/lua/nxlua/, $(luas)) \
 
 toluas := image/image.pkg
 
-tolua: $(addprefix src/cpp/nxlua/tolua/, $(toluas:.pkg=.cpp)) \
+tolua: $(addprefix src/cpp/nxlua/tolua/, $(toluas:.pkg=_binding.cpp)) \
 		src/cpp/nxlua/tolua_libs_open.cpp
 	@echo $^ "=>" $@ 
 
-src/cpp/nxlua/tolua/%.cpp: src/cpp/nxlua/%.pkg
+src/cpp/nxlua/tolua/%_binding.cpp: src/cpp/nxlua/%.pkg
 	mkdir -p $$(dirname $@)
 	tolua++5.1 $< > $@
 	clang-format -i $@
