@@ -49,7 +49,7 @@ static void open_libs(lua_State* L)
     luaopen_cjson(L);
     tolua_libs_open(L);
     luaopen_luv(L);
-    lua_setglobal(L, "uv");
+    lua_setglobal(L, "luv");
     pure_lua_open(L);
 }
 
