@@ -1,17 +1,14 @@
 local a = Image:new_local()
 a:load("./1.png")
+print(a:save("./r0.png"))
 
-local b = Image:new_local()
+local b = a:crop(0, 0, 256, 256)
+b:save('./r1.png')
 
-b:resize(  a:height(), a:width())
+local c = Image:new_local()
+c:resize(1024, 1024)
+c:fill(255, 0, 0, 0)
+c:save("./r2.png")
 
--- local transform = ImageTransform()
--- transform = transform:mul(ImageTransform:translate(-b:width()/2, -b:height()/2)) 
--- transform = transform:mul(ImageTransform:rotate(-math.pi/2)) 
--- transform = transform:mul(ImageTransform:translate(a:width()/2, a:height()/2)) 
-
--- Image:resample(a, 0, 0, a:width(), a:height(), 
--- b, 0, 0, b:width(), b:height(), transform)
-
-
-b:save('./3.png')
+local d=  a:rotate(math.pi/6)
+d:save("./r3.png")

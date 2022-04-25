@@ -1,6 +1,6 @@
 /*
 ** Lua binding: image
-** Generated automatically by tolua++-1.0.93 on Mon Apr 25 10:14:56 2022.
+** Generated automatically by tolua++-1.0.93 on Mon Apr 25 10:50:36 2022.
 */
 
 #ifndef __cplusplus
@@ -45,10 +45,9 @@ static int tolua_collect_image_transform_t(lua_State* tolua_S)
 /* function to register type */
 static void tolua_reg_types(lua_State* tolua_S)
 {
-    tolua_usertype(tolua_S, "image_t::color_t");
     tolua_usertype(tolua_S, "image_t");
-    tolua_usertype(tolua_S, "boost::gil::matrix3x2<double>");
     tolua_usertype(tolua_S, "image_transform_t");
+    tolua_usertype(tolua_S, "image_t::color_t");
 }
 
 /* method: translate of class  image_transform_t */
@@ -258,68 +257,6 @@ tolua_lerror:
     tolua_error(tolua_S, "#ferror in function 'delete'.", &tolua_err);
     return 0;
     #endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: backend of class  image_transform_t */
-#ifndef TOLUA_DISABLE_tolua_image_image_transform_t_backend00
-static int tolua_image_image_transform_t_backend00(lua_State* tolua_S)
-{
-    #ifndef TOLUA_RELEASE
-    tolua_Error tolua_err;
-    if (!tolua_isusertype(tolua_S, 1, "image_transform_t", 0, &tolua_err)
-        || !tolua_isnoobj(tolua_S, 2, &tolua_err))
-        goto tolua_lerror;
-    else
-    #endif
-    {
-        image_transform_t* self
-            = (image_transform_t*)tolua_tousertype(tolua_S, 1, 0);
-    #ifndef TOLUA_RELEASE
-        if (!self)
-            tolua_error(tolua_S, "invalid 'self' in function 'backend'", NULL);
-    #endif
-        {
-            boost::gil::matrix3x2<double>& tolua_ret
-                = (boost::gil::matrix3x2<double>&)self->backend();
-            tolua_pushusertype(
-                tolua_S, (void*)&tolua_ret, "boost::gil::matrix3x2<double>");
-        }
-    }
-    return 1;
-    #ifndef TOLUA_RELEASE
-tolua_lerror:
-    tolua_error(tolua_S, "#ferror in function 'backend'.", &tolua_err);
-    return 0;
-    #endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: backend of class  image_transform_t */
-#ifndef TOLUA_DISABLE_tolua_image_image_transform_t_backend01
-static int tolua_image_image_transform_t_backend01(lua_State* tolua_S)
-{
-    tolua_Error tolua_err;
-    if (!tolua_isusertype(tolua_S, 1, "const image_transform_t", 0, &tolua_err)
-        || !tolua_isnoobj(tolua_S, 2, &tolua_err))
-        goto tolua_lerror;
-    else {
-        const image_transform_t* self
-            = (const image_transform_t*)tolua_tousertype(tolua_S, 1, 0);
-    #ifndef TOLUA_RELEASE
-        if (!self)
-            tolua_error(tolua_S, "invalid 'self' in function 'backend'", NULL);
-    #endif
-        {
-            const boost::gil::matrix3x2<double>& tolua_ret
-                = (const boost::gil::matrix3x2<double>&)self->backend();
-            tolua_pushusertype(tolua_S, (void*)&tolua_ret,
-                "const boost::gil::matrix3x2<double>");
-        }
-    }
-    return 1;
-tolua_lerror:
-    return tolua_image_image_transform_t_backend00(tolua_S);
 }
 #endif //#ifndef TOLUA_DISABLE
 
@@ -742,6 +679,44 @@ tolua_lerror:
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: fill of class  image_t */
+#ifndef TOLUA_DISABLE_tolua_image_image_t_fill00
+static int tolua_image_image_t_fill00(lua_State* tolua_S)
+{
+    #ifndef TOLUA_RELEASE
+    tolua_Error tolua_err;
+    if (!tolua_isusertype(tolua_S, 1, "image_t", 0, &tolua_err)
+        || !tolua_isnumber(tolua_S, 2, 0, &tolua_err)
+        || !tolua_isnumber(tolua_S, 3, 0, &tolua_err)
+        || !tolua_isnumber(tolua_S, 4, 0, &tolua_err)
+        || !tolua_isnumber(tolua_S, 5, 0, &tolua_err)
+        || !tolua_isnoobj(tolua_S, 6, &tolua_err))
+        goto tolua_lerror;
+    else
+    #endif
+    {
+        image_t* self = (image_t*)tolua_tousertype(tolua_S, 1, 0);
+        int tolua_var_8 = ((int)tolua_tonumber(tolua_S, 2, 0));
+        int tolua_var_9 = ((int)tolua_tonumber(tolua_S, 3, 0));
+        int tolua_var_10 = ((int)tolua_tonumber(tolua_S, 4, 0));
+        int tolua_var_11 = ((int)tolua_tonumber(tolua_S, 5, 0));
+    #ifndef TOLUA_RELEASE
+        if (!self)
+            tolua_error(tolua_S, "invalid 'self' in function 'fill'", NULL);
+    #endif
+        {
+            self->fill(tolua_var_8, tolua_var_9, tolua_var_10, tolua_var_11);
+        }
+    }
+    return 0;
+    #ifndef TOLUA_RELEASE
+tolua_lerror:
+    tolua_error(tolua_S, "#ferror in function 'fill'.", &tolua_err);
+    return 0;
+    #endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: pixel of class  image_t */
 #ifndef TOLUA_DISABLE_tolua_image_image_t_pixel00
 static int tolua_image_image_t_pixel00(lua_State* tolua_S)
@@ -822,11 +797,11 @@ static int tolua_image_image_t_resample00(lua_State* tolua_S)
         int dst_min_y = ((int)tolua_tonumber(tolua_S, 9, 0));
         int dst_width = ((int)tolua_tonumber(tolua_S, 10, 0));
         int dst_height = ((int)tolua_tonumber(tolua_S, 11, 0));
-        const image_transform_t* tolua_var_8
+        const image_transform_t* tolua_var_12
             = ((const image_transform_t*)tolua_tousertype(tolua_S, 12, 0));
         {
             image_t::resample(src, src_min_x, src_min_y, src_width, src_height,
-                dst, dst_min_x, dst_min_y, dst_width, dst_height, tolua_var_8);
+                dst, dst_min_x, dst_min_y, dst_width, dst_height, tolua_var_12);
         }
     }
     return 0;
@@ -861,8 +836,6 @@ TOLUA_API int tolua_image_open(lua_State* tolua_S)
         tolua_S, "new_local", tolua_image_image_transform_t_new00_local);
     tolua_function(tolua_S, ".call", tolua_image_image_transform_t_new00_local);
     tolua_function(tolua_S, "delete", tolua_image_image_transform_t_delete00);
-    tolua_function(tolua_S, "backend", tolua_image_image_transform_t_backend00);
-    tolua_function(tolua_S, "backend", tolua_image_image_transform_t_backend01);
     tolua_function(tolua_S, "mul", tolua_image_image_transform_t_mul00);
     tolua_endmodule(tolua_S);
 #ifdef __cplusplus
@@ -896,6 +869,7 @@ TOLUA_API int tolua_image_open(lua_State* tolua_S)
     tolua_function(tolua_S, "resize", tolua_image_image_t_resize00);
     tolua_function(tolua_S, "width", tolua_image_image_t_width00);
     tolua_function(tolua_S, "height", tolua_image_image_t_height00);
+    tolua_function(tolua_S, "fill", tolua_image_image_t_fill00);
     tolua_function(tolua_S, "pixel", tolua_image_image_t_pixel00);
     tolua_function(tolua_S, "resample", tolua_image_image_t_resample00);
     tolua_endmodule(tolua_S);

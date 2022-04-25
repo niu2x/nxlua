@@ -12,9 +12,6 @@ public:
     image_transform_t();
     ~image_transform_t();
 
-    boost::gil::matrix3x2<double>& backend() { return mat_; }
-    const boost::gil::matrix3x2<double>& backend() const { return mat_; }
-
     image_transform_t mul(const image_transform_t &right) const ;
 
 };
@@ -35,6 +32,7 @@ class image_t {
     int width() const ;
 
     int height() const ;
+    void fill(int ,int ,int, int)  ;
 
     color_t pixel(int x, int y) const;
 

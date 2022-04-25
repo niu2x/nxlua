@@ -64,6 +64,8 @@ public:
 
     color_t pixel(int x, int y) const;
 
+    void fill(uint8_t r, uint8_t g, uint8_t b, uint8_t a);
+
 private:
     std::unique_ptr<boost::gil::rgba8_image_t> image_;
 

@@ -42,8 +42,9 @@ bool image_t::load(const char* filename)
 
 bool image_t::save(const char* filename)
 {
-    if (!image_)
+    if (!image_) {
         return false;
+    }
 
     auto buffer = new uint8_t[image_->width() * image_->height() * COMPS];
     auto buffer_writer = buffer;
@@ -63,6 +64,23 @@ bool image_t::save(const char* filename)
             buffer, image_->width() * COMPS);
     delete[] buffer;
     return success;
+}
+
+void image_t::fill(uint8_t r, uint8_t g, uint8_t b, uint8_t a)
+{
+    if (!image_) {
+        return;
+    }
+
+    auto v = bg::view(backend());
+    auto iter = v.begin();
+    while (iter != v.end()) {
+        (*iter)[0] = r;
+        (*iter)[1] = g;
+        (*iter)[2] = b;
+        (*iter)[3] = a;
+        ++iter;
+    }
 }
 
 // image_t image_t::resize(int width, int height) {
