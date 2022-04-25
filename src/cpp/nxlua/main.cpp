@@ -7,6 +7,8 @@ extern "C" {
 #include <lauxlib.h>
 }
 
+#error "test-pr"
+
 extern "C" {
 LUALIB_API int luaopen_bit(lua_State* L);
 extern int luaopen_cjson(lua_State* l);
