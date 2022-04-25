@@ -23,6 +23,7 @@ add_subdirectory(dependencies/cpp-linenoise)
 add_subdirectory(dependencies/LuaBitOp-1.0.2)
 add_subdirectory(dependencies/lua-cjson)
 add_subdirectory(dependencies/libuv)
+add_subdirectory(dependencies/luv)
 target_compile_definitions(cjson PRIVATE -DENABLE_CJSON_GLOBAL)
 
 add_subdirectory(src/cpp/nxlua)

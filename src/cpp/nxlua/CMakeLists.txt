@@ -14,6 +14,7 @@ target_link_libraries(nxlua
 	cjson
 	toluapp_lib
 	uv_a
+	luv_a
 )
 
 target_include_directories(nxlua PRIVATE ${CMAKE_SOURCE_DIR}/dependencies/)
