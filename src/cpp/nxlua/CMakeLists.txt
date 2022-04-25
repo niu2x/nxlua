@@ -13,6 +13,7 @@ target_link_libraries(nxlua
 	linenoise
 	cjson
 	toluapp_lib
+	uv_a
 )
 
 target_include_directories(nxlua PRIVATE ${CMAKE_SOURCE_DIR}/dependencies/)

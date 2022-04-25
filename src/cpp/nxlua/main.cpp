@@ -13,6 +13,7 @@ extern int luaopen_cjson(lua_State* l);
 }
 
 #include <tolua++.h>
+#include <uv.h>
 
 TOLUA_API int tolua_image_open(lua_State* tolua_S);
 extern void pure_lua_open(lua_State* L);
