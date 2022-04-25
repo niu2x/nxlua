@@ -4,7 +4,7 @@ baseClass.__index = baseClass
 function baseClass:ctor()
 end
 
-function baseClass:new(...)
+function baseClass:new_local(...)
 	local classObj = self
 	local instance = {}
 	setmetatable(instance, classObj)

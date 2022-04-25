@@ -1,4 +1,5 @@
-luas := class.lua
+luas := class.lua \
+		Image.lua
 
 cpps := $(addprefix src/cpp/nxlua/pure_lua/, $(luas:.lua=.cpp))
 headers := $(addprefix src/cpp/nxlua/pure_lua/, $(luas:.lua=.h))

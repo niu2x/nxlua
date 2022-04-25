@@ -3,7 +3,7 @@ $#include "image/image.h"
 $using namespace nxlua;
 
 
-class image_transform_t @ ImageTransform {
+class image_transform_t {
 public:
     static image_transform_t translate(double, double);
     static image_transform_t scale(double, double);
@@ -19,7 +19,7 @@ public:
 
 };
 
-class image_t @ Image {
+class image_t {
 
 	typedef struct  {
 	        int r,g,b,a;

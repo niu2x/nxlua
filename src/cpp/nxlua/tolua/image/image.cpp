@@ -1,6 +1,6 @@
 /*
 ** Lua binding: image
-** Generated automatically by tolua++-1.0.93 on Mon Apr 25 02:11:28 2022.
+** Generated automatically by tolua++-1.0.93 on Mon Apr 25 10:14:56 2022.
 */
 
 #ifndef __cplusplus
@@ -52,8 +52,8 @@ static void tolua_reg_types(lua_State* tolua_S)
 }
 
 /* method: translate of class  image_transform_t */
-#ifndef TOLUA_DISABLE_tolua_image_ImageTransform_translate00
-static int tolua_image_ImageTransform_translate00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_image_image_transform_t_translate00
+static int tolua_image_image_transform_t_translate00(lua_State* tolua_S)
 {
     #ifndef TOLUA_RELEASE
     tolua_Error tolua_err;
@@ -95,8 +95,8 @@ tolua_lerror:
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: scale of class  image_transform_t */
-#ifndef TOLUA_DISABLE_tolua_image_ImageTransform_scale00
-static int tolua_image_ImageTransform_scale00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_image_image_transform_t_scale00
+static int tolua_image_image_transform_t_scale00(lua_State* tolua_S)
 {
     #ifndef TOLUA_RELEASE
     tolua_Error tolua_err;
@@ -138,8 +138,8 @@ tolua_lerror:
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: rotate of class  image_transform_t */
-#ifndef TOLUA_DISABLE_tolua_image_ImageTransform_rotate00
-static int tolua_image_ImageTransform_rotate00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_image_image_transform_t_rotate00
+static int tolua_image_image_transform_t_rotate00(lua_State* tolua_S)
 {
     #ifndef TOLUA_RELEASE
     tolua_Error tolua_err;
@@ -178,8 +178,8 @@ tolua_lerror:
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: new of class  image_transform_t */
-#ifndef TOLUA_DISABLE_tolua_image_ImageTransform_new00
-static int tolua_image_ImageTransform_new00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_image_image_transform_t_new00
+static int tolua_image_image_transform_t_new00(lua_State* tolua_S)
 {
     #ifndef TOLUA_RELEASE
     tolua_Error tolua_err;
@@ -205,8 +205,8 @@ tolua_lerror:
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: new_local of class  image_transform_t */
-#ifndef TOLUA_DISABLE_tolua_image_ImageTransform_new00_local
-static int tolua_image_ImageTransform_new00_local(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_image_image_transform_t_new00_local
+static int tolua_image_image_transform_t_new00_local(lua_State* tolua_S)
 {
     #ifndef TOLUA_RELEASE
     tolua_Error tolua_err;
@@ -233,8 +233,8 @@ tolua_lerror:
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: delete of class  image_transform_t */
-#ifndef TOLUA_DISABLE_tolua_image_ImageTransform_delete00
-static int tolua_image_ImageTransform_delete00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_image_image_transform_t_delete00
+static int tolua_image_image_transform_t_delete00(lua_State* tolua_S)
 {
     #ifndef TOLUA_RELEASE
     tolua_Error tolua_err;
@@ -262,8 +262,8 @@ tolua_lerror:
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: backend of class  image_transform_t */
-#ifndef TOLUA_DISABLE_tolua_image_ImageTransform_backend00
-static int tolua_image_ImageTransform_backend00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_image_image_transform_t_backend00
+static int tolua_image_image_transform_t_backend00(lua_State* tolua_S)
 {
     #ifndef TOLUA_RELEASE
     tolua_Error tolua_err;
@@ -296,8 +296,8 @@ tolua_lerror:
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: backend of class  image_transform_t */
-#ifndef TOLUA_DISABLE_tolua_image_ImageTransform_backend01
-static int tolua_image_ImageTransform_backend01(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_image_image_transform_t_backend01
+static int tolua_image_image_transform_t_backend01(lua_State* tolua_S)
 {
     tolua_Error tolua_err;
     if (!tolua_isusertype(tolua_S, 1, "const image_transform_t", 0, &tolua_err)
@@ -319,13 +319,13 @@ static int tolua_image_ImageTransform_backend01(lua_State* tolua_S)
     }
     return 1;
 tolua_lerror:
-    return tolua_image_ImageTransform_backend00(tolua_S);
+    return tolua_image_image_transform_t_backend00(tolua_S);
 }
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: mul of class  image_transform_t */
-#ifndef TOLUA_DISABLE_tolua_image_ImageTransform_mul00
-static int tolua_image_ImageTransform_mul00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_image_image_transform_t_mul00
+static int tolua_image_image_transform_t_mul00(lua_State* tolua_S)
 {
     #ifndef TOLUA_RELEASE
     tolua_Error tolua_err;
@@ -500,8 +500,8 @@ static int tolua_set_image_t__color_t_a(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: new of class  image_t */
-#ifndef TOLUA_DISABLE_tolua_image_Image_new00
-static int tolua_image_Image_new00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_image_image_t_new00
+static int tolua_image_image_t_new00(lua_State* tolua_S)
 {
     #ifndef TOLUA_RELEASE
     tolua_Error tolua_err;
@@ -526,8 +526,8 @@ tolua_lerror:
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: new_local of class  image_t */
-#ifndef TOLUA_DISABLE_tolua_image_Image_new00_local
-static int tolua_image_Image_new00_local(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_image_image_t_new00_local
+static int tolua_image_image_t_new00_local(lua_State* tolua_S)
 {
     #ifndef TOLUA_RELEASE
     tolua_Error tolua_err;
@@ -553,8 +553,8 @@ tolua_lerror:
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: delete of class  image_t */
-#ifndef TOLUA_DISABLE_tolua_image_Image_delete00
-static int tolua_image_Image_delete00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_image_image_t_delete00
+static int tolua_image_image_t_delete00(lua_State* tolua_S)
 {
     #ifndef TOLUA_RELEASE
     tolua_Error tolua_err;
@@ -581,8 +581,8 @@ tolua_lerror:
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: load of class  image_t */
-#ifndef TOLUA_DISABLE_tolua_image_Image_load00
-static int tolua_image_Image_load00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_image_image_t_load00
+static int tolua_image_image_t_load00(lua_State* tolua_S)
 {
     #ifndef TOLUA_RELEASE
     tolua_Error tolua_err;
@@ -614,8 +614,8 @@ tolua_lerror:
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: save of class  image_t */
-#ifndef TOLUA_DISABLE_tolua_image_Image_save00
-static int tolua_image_Image_save00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_image_image_t_save00
+static int tolua_image_image_t_save00(lua_State* tolua_S)
 {
     #ifndef TOLUA_RELEASE
     tolua_Error tolua_err;
@@ -647,8 +647,8 @@ tolua_lerror:
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: resize of class  image_t */
-#ifndef TOLUA_DISABLE_tolua_image_Image_resize00
-static int tolua_image_Image_resize00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_image_image_t_resize00
+static int tolua_image_image_t_resize00(lua_State* tolua_S)
 {
     #ifndef TOLUA_RELEASE
     tolua_Error tolua_err;
@@ -681,8 +681,8 @@ tolua_lerror:
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: width of class  image_t */
-#ifndef TOLUA_DISABLE_tolua_image_Image_width00
-static int tolua_image_Image_width00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_image_image_t_width00
+static int tolua_image_image_t_width00(lua_State* tolua_S)
 {
     #ifndef TOLUA_RELEASE
     tolua_Error tolua_err;
@@ -712,8 +712,8 @@ tolua_lerror:
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: height of class  image_t */
-#ifndef TOLUA_DISABLE_tolua_image_Image_height00
-static int tolua_image_Image_height00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_image_image_t_height00
+static int tolua_image_image_t_height00(lua_State* tolua_S)
 {
     #ifndef TOLUA_RELEASE
     tolua_Error tolua_err;
@@ -743,8 +743,8 @@ tolua_lerror:
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: pixel of class  image_t */
-#ifndef TOLUA_DISABLE_tolua_image_Image_pixel00
-static int tolua_image_Image_pixel00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_image_image_t_pixel00
+static int tolua_image_image_t_pixel00(lua_State* tolua_S)
 {
     #ifndef TOLUA_RELEASE
     tolua_Error tolua_err;
@@ -789,8 +789,8 @@ tolua_lerror:
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: resample of class  image_t */
-#ifndef TOLUA_DISABLE_tolua_image_Image_resample00
-static int tolua_image_Image_resample00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_image_image_t_resample00
+static int tolua_image_image_t_resample00(lua_State* tolua_S)
 {
     #ifndef TOLUA_RELEASE
     tolua_Error tolua_err;
@@ -846,31 +846,31 @@ TOLUA_API int tolua_image_open(lua_State* tolua_S)
     tolua_module(tolua_S, NULL, 0);
     tolua_beginmodule(tolua_S, NULL);
 #ifdef __cplusplus
-    tolua_cclass(tolua_S, "ImageTransform", "image_transform_t", "",
+    tolua_cclass(tolua_S, "image_transform_t", "image_transform_t", "",
         tolua_collect_image_transform_t);
 #else
-    tolua_cclass(tolua_S, "ImageTransform", "image_transform_t", "", NULL);
+    tolua_cclass(tolua_S, "image_transform_t", "image_transform_t", "", NULL);
 #endif
-    tolua_beginmodule(tolua_S, "ImageTransform");
+    tolua_beginmodule(tolua_S, "image_transform_t");
     tolua_function(
-        tolua_S, "translate", tolua_image_ImageTransform_translate00);
-    tolua_function(tolua_S, "scale", tolua_image_ImageTransform_scale00);
-    tolua_function(tolua_S, "rotate", tolua_image_ImageTransform_rotate00);
-    tolua_function(tolua_S, "new", tolua_image_ImageTransform_new00);
+        tolua_S, "translate", tolua_image_image_transform_t_translate00);
+    tolua_function(tolua_S, "scale", tolua_image_image_transform_t_scale00);
+    tolua_function(tolua_S, "rotate", tolua_image_image_transform_t_rotate00);
+    tolua_function(tolua_S, "new", tolua_image_image_transform_t_new00);
     tolua_function(
-        tolua_S, "new_local", tolua_image_ImageTransform_new00_local);
-    tolua_function(tolua_S, ".call", tolua_image_ImageTransform_new00_local);
-    tolua_function(tolua_S, "delete", tolua_image_ImageTransform_delete00);
-    tolua_function(tolua_S, "backend", tolua_image_ImageTransform_backend00);
-    tolua_function(tolua_S, "backend", tolua_image_ImageTransform_backend01);
-    tolua_function(tolua_S, "mul", tolua_image_ImageTransform_mul00);
+        tolua_S, "new_local", tolua_image_image_transform_t_new00_local);
+    tolua_function(tolua_S, ".call", tolua_image_image_transform_t_new00_local);
+    tolua_function(tolua_S, "delete", tolua_image_image_transform_t_delete00);
+    tolua_function(tolua_S, "backend", tolua_image_image_transform_t_backend00);
+    tolua_function(tolua_S, "backend", tolua_image_image_transform_t_backend01);
+    tolua_function(tolua_S, "mul", tolua_image_image_transform_t_mul00);
     tolua_endmodule(tolua_S);
 #ifdef __cplusplus
-    tolua_cclass(tolua_S, "Image", "image_t", "", tolua_collect_image_t);
+    tolua_cclass(tolua_S, "image_t", "image_t", "", tolua_collect_image_t);
 #else
-    tolua_cclass(tolua_S, "Image", "image_t", "", NULL);
+    tolua_cclass(tolua_S, "image_t", "image_t", "", NULL);
 #endif
-    tolua_beginmodule(tolua_S, "Image");
+    tolua_beginmodule(tolua_S, "image_t");
 #ifdef __cplusplus
     tolua_cclass(tolua_S, "color_t", "image_t::color_t", "",
         tolua_collect_image_t__color_t);
@@ -887,17 +887,17 @@ TOLUA_API int tolua_image_open(lua_State* tolua_S)
     tolua_variable(tolua_S, "a", tolua_get_image_t__color_t_a,
         tolua_set_image_t__color_t_a);
     tolua_endmodule(tolua_S);
-    tolua_function(tolua_S, "new", tolua_image_Image_new00);
-    tolua_function(tolua_S, "new_local", tolua_image_Image_new00_local);
-    tolua_function(tolua_S, ".call", tolua_image_Image_new00_local);
-    tolua_function(tolua_S, "delete", tolua_image_Image_delete00);
-    tolua_function(tolua_S, "load", tolua_image_Image_load00);
-    tolua_function(tolua_S, "save", tolua_image_Image_save00);
-    tolua_function(tolua_S, "resize", tolua_image_Image_resize00);
-    tolua_function(tolua_S, "width", tolua_image_Image_width00);
-    tolua_function(tolua_S, "height", tolua_image_Image_height00);
-    tolua_function(tolua_S, "pixel", tolua_image_Image_pixel00);
-    tolua_function(tolua_S, "resample", tolua_image_Image_resample00);
+    tolua_function(tolua_S, "new", tolua_image_image_t_new00);
+    tolua_function(tolua_S, "new_local", tolua_image_image_t_new00_local);
+    tolua_function(tolua_S, ".call", tolua_image_image_t_new00_local);
+    tolua_function(tolua_S, "delete", tolua_image_image_t_delete00);
+    tolua_function(tolua_S, "load", tolua_image_image_t_load00);
+    tolua_function(tolua_S, "save", tolua_image_image_t_save00);
+    tolua_function(tolua_S, "resize", tolua_image_image_t_resize00);
+    tolua_function(tolua_S, "width", tolua_image_image_t_width00);
+    tolua_function(tolua_S, "height", tolua_image_image_t_height00);
+    tolua_function(tolua_S, "pixel", tolua_image_image_t_pixel00);
+    tolua_function(tolua_S, "resample", tolua_image_image_t_resample00);
     tolua_endmodule(tolua_S);
     tolua_endmodule(tolua_S);
     return 1;
