@@ -5,6 +5,7 @@ extern "C" {
 #include <lua.h>
 #include <lualib.h>
 #include <lauxlib.h>
+#include <luv/src/luv.h>
 }
 
 extern "C" {
@@ -13,7 +14,6 @@ extern int luaopen_cjson(lua_State* l);
 }
 
 #include <tolua++.h>
-#include <uv.h>
 
 TOLUA_API int tolua_image_open(lua_State* tolua_S);
 extern void pure_lua_open(lua_State* L);
@@ -48,6 +48,8 @@ static void open_libs(lua_State* L)
     luaopen_bit(L);
     luaopen_cjson(L);
     tolua_libs_open(L);
+    luaopen_luv(L);
+    lua_setglobal(L, "luv");
     pure_lua_open(L);
 }
 

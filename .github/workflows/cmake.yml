@@ -17,6 +17,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+        with:
+          submodules: 'true'
 
       - name: "Build & test"
         run: |
@@ -29,6 +31,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+        with:
+          submodules: 'true'
 
       - name: "Build & test"
         run: |
