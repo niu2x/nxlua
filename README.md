@@ -1,4 +1,4 @@
-#nxlua
+# nxlua
 
 # Get Started
 [Binaries Download](https://github.com/niu2x/nxlua/releases)
