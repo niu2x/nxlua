@@ -38,3 +38,5 @@ add_subdirectory(dependencies/luv)
 target_compile_definitions(cjson PRIVATE -DENABLE_CJSON_GLOBAL)
 
 add_subdirectory(src/cpp/nxlua)
+
+install(TARGETS nxlua DESTINATION bin)
