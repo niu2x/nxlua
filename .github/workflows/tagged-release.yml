@@ -13,7 +13,7 @@ env:
 jobs:
   linux-build:
     name: "linux build"
-    runs-on: "ubuntu-latest"
+    runs-on: "ubuntu-20.04"
 
     steps:
       - uses: actions/checkout@v3
@@ -34,7 +34,7 @@ jobs:
       
   windows-build:
     name: "windows build"
-    runs-on: "windows-latest"
+    runs-on: "windows-2002"
 
     steps:
       - uses: actions/checkout@v3
@@ -54,7 +54,7 @@ jobs:
 
   release:
     name: "release"
-    runs-on: "ubuntu-latest"
+    runs-on: "ubuntu-20.04"
     needs:
       - linux-build
       - windows-build
