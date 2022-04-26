@@ -24,11 +24,12 @@ jobs:
         run: |
           cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
           cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
+          cpack -G ZIP
 
       - uses: actions/upload-artifact@master
         with:
           name: linux-artifact
-          path: ${{github.workspace}}/build/bin/
+          path: ${{github.workspace}}/build/packages/
 
       
   windows-build:
@@ -44,11 +45,12 @@ jobs:
         run: |
           cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
           cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
+          cpack -G ZIP
 
       - uses: actions/upload-artifact@master
         with:
           name: windows-artifact
-          path: ${{github.workspace}}/build/bin/
+          path: ${{github.workspace}}/build/packages/
 
   release:
     name: "release"
