@@ -21,6 +21,7 @@ extern void dotty(lua_State* L);
 extern void tolua_libs_open(lua_State* L);
 
 #include "image/image.h"
+#include "utils.h"
 
 struct params_t {
     char* input_file;
@@ -34,7 +35,13 @@ static void params_parse(struct params_t* self, int argc, char* argv[])
     }
 }
 
-static void run_interactive(lua_State* L) { dotty(L); }
+static void run_interactive(lua_State* L)
+{
+    std::cout << stringify(NXLUA_PROJECT_NAME) << "("
+              << stringify(NXLUA_PROJECT_VERSION) << "-"
+              << stringify(NXLUA_GIT_HASH) << ")" << std::endl;
+    dotty(L);
+}
 static void run(lua_State* L, const char* input_file)
 {
     if (luaL_dofile(L, input_file)) {
