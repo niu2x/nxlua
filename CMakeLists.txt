@@ -42,4 +42,4 @@ add_subdirectory(dependencies/luv)
 add_subdirectory(src/cpp/nxlua)
 
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
-# include(package)
+include(package)
