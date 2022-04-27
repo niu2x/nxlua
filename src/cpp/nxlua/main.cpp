@@ -21,6 +21,7 @@ extern void dotty(lua_State* L);
 extern void tolua_libs_open(lua_State* L);
 
 #include "image/image.h"
+#include "os_ext.h"
 #include "utils.h"
 
 struct params_t {
@@ -71,6 +72,7 @@ static void open_libs(lua_State* L)
     tolua_libs_open(L);
     luaopen_luv(L);
     lua_setglobal(L, "luv");
+    nxlua::lua_os_ext_open(L);
     pure_lua_open(L);
 }
 
@@ -81,11 +83,11 @@ int main(int argc, char* argv[], char* env[])
     params_parse(&params, argc, argv);
 
     auto L = luaL_newstate();
+    save_argv(L, argc, argv);
+
     open_libs(L);
 
     bool interactive = !params.input_file;
-
-    save_argv(L, argc, argv);
 
     if (interactive)
         run_interactive(L);

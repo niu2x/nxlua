@@ -1,0 +1,1 @@
+-- print([==[todo add script root dir to package.path]==])
