@@ -42,6 +42,20 @@ static void run_interactive(lua_State* L)
               << stringify(NXLUA_GIT_HASH) << ")" << std::endl;
     dotty(L);
 }
+
+static void save_argv(lua_State* L, int argc, char* argv[]) {
+    lua_newtable(L);
+    lua_newtable(L);
+
+    for(int i = 0; i < argc; i ++) {
+        lua_pushstring(L, argv[i]);
+        lua_rawseti(L, -2, i+1);
+    }
+
+    lua_setfield(L, -2, "argv");
+    lua_setglobal(L, "sys");
+}
+
 static void run(lua_State* L, const char* input_file)
 {
     if (luaL_dofile(L, input_file)) {
@@ -70,6 +84,8 @@ int main(int argc, char* argv[], char* env[])
     open_libs(L);
 
     bool interactive = !params.input_file;
+
+    save_argv(L, argc, argv);
 
     if (interactive)
         run_interactive(L);
