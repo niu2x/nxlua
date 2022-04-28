@@ -1,10 +1,9 @@
 #ifndef NXLUA_IMAGE_H
 #define NXLUA_IMAGE_H
 
-
 #if _WIN32
-#undef max
-#undef min
+    #undef max
+    #undef min
 #endif
 
 #include <memory>

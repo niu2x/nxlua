@@ -44,13 +44,14 @@ static void run_interactive(lua_State* L)
     dotty(L);
 }
 
-static void save_argv(lua_State* L, int argc, char* argv[]) {
+static void save_argv(lua_State* L, int argc, char* argv[])
+{
     lua_newtable(L);
     lua_newtable(L);
 
-    for(int i = 0; i < argc; i ++) {
+    for (int i = 0; i < argc; i++) {
         lua_pushstring(L, argv[i]);
-        lua_rawseti(L, -2, i+1);
+        lua_rawseti(L, -2, i + 1);
     }
 
     lua_setfield(L, -2, "argv");
