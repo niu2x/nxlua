@@ -83,7 +83,7 @@ int main(int argc, char* argv[], char* env[])
     params_parse(&params, argc, argv);
 
     auto L = luaL_newstate();
-    save_argv(L, argc, argv);
+    save_argv(L, argc - 1, argv + 1);
 
     open_libs(L);
 
