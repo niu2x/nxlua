@@ -17,7 +17,7 @@ namespace nxlua {
 static int os_ext_getcwd(lua_State* L)
 {
     auto path = std::filesystem::current_path();
-    lua_pushstring(L, path.c_str());
+    lua_pushstring(L, path.u8string().c_str());
     return 1;
 }
 
