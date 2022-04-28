@@ -1,6 +1,6 @@
 /*
 ** Lua binding: lua_pipe
-** Generated automatically by tolua++-1.0.93 on Thu Apr 28 22:50:13 2022.
+** Generated automatically by tolua++-1.0.93 on Thu Apr 28 23:34:05 2022.
 */
 
 #ifndef __cplusplus
@@ -1567,6 +1567,33 @@ tolua_lerror:
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* function: pipe::pipe */
+#ifndef TOLUA_DISABLE_tolua_lua_pipe_pipe_pipe12
+static int tolua_lua_pipe_pipe_pipe12(lua_State* tolua_S)
+{
+    tolua_Error tolua_err;
+    if (!tolua_iscppstring(tolua_S, 1, 0, &tolua_err)
+        || !tolua_iscppstring(tolua_S, 2, 0, &tolua_err)
+        || !tolua_isnoobj(tolua_S, 3, &tolua_err))
+        goto tolua_lerror;
+    else {
+        const std::string sz
+            = ((const std::string)tolua_tocppstring(tolua_S, 1, 0));
+        const std::string filters_desc
+            = ((const std::string)tolua_tocppstring(tolua_S, 2, 0));
+        {
+            std::string tolua_ret = (std::string)pipe::pipe(sz, filters_desc);
+            tolua_pushcppstring(tolua_S, (const char*)tolua_ret);
+            tolua_pushcppstring(tolua_S, (const char*)sz);
+            tolua_pushcppstring(tolua_S, (const char*)filters_desc);
+        }
+    }
+    return 3;
+tolua_lerror:
+    return tolua_lua_pipe_pipe_pipe11(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* Open function */
 TOLUA_API int tolua_lua_pipe_open(lua_State* tolua_S)
 {
@@ -1771,6 +1798,7 @@ TOLUA_API int tolua_lua_pipe_open(lua_State* tolua_S)
     tolua_function(tolua_S, "pipe", tolua_lua_pipe_pipe_pipe09);
     tolua_function(tolua_S, "pipe", tolua_lua_pipe_pipe_pipe10);
     tolua_function(tolua_S, "pipe", tolua_lua_pipe_pipe_pipe11);
+    tolua_function(tolua_S, "pipe", tolua_lua_pipe_pipe_pipe12);
     tolua_endmodule(tolua_S);
     tolua_endmodule(tolua_S);
     return 1;

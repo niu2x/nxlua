@@ -83,5 +83,8 @@ namespace pipe {
 	std::string pipe(const std::string &sz, pipe::filter::digest_t& filter);
 	std::string pipe(const std::string &sz, pipe::filter::encrypt_t& filter);
 	std::string pipe(const std::string &sz, pipe::filter::decrypt_t& filter);
+
+	std::string pipe(const std::string& sz, const std::string &filters_desc);
+
 };
 

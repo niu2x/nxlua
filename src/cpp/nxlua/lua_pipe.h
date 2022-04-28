@@ -6,6 +6,7 @@
 namespace nxlua::lua::pipe {
 namespace filter = nx::pipe::filter;
 extern std::string pipe(const std::string& sz, nx::pipe::filter_proxy_t filter);
+extern std::string pipe(const std::string& sz, const std::string& filters_desc);
 }; // namespace nxlua::lua::pipe
 
 #endif
