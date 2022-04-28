@@ -7,7 +7,8 @@ luas := PreFix.lua \
 		path_utils.lua \
 		appInit.lua
 
-toluas := image/image.pkg
+toluas := image/image.pkg \
+			lua_pipe.pkg
 
 cpps := $(addprefix src/cpp/nxlua/pure_lua/, $(luas:.lua=.cpp))
 headers := $(addprefix src/cpp/nxlua/pure_lua/, $(luas:.lua=.h))

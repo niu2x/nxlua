@@ -1,0 +1,26 @@
+$#include "lua_pipe.h"
+$#include "nxlua/pipe.h"
+
+$using namespace nxlua::lua;
+$using namespace nx::pipe::filter;
+
+namespace pipe {
+
+	namespace filter {
+
+		class base64_t{
+			base64_t();
+			~base64_t();
+		};
+
+		class unbase64_t{
+			unbase64_t();
+			~unbase64_t();
+		};
+
+	};
+
+
+	std::string pipe(const std::string &sz, pipe::filter::base64_t& filter);
+};
+

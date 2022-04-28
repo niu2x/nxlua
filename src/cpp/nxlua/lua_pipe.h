@@ -1,12 +1,11 @@
 #ifndef NXLUA_LUA_PIPE_H
 #define NXLUA_LUA_PIPE_H
 
-struct lua_State;
+#include "nxlua/pipe.h"
 
-namespace nxlua {
-
-extern void lua_pipe_open(lua_State* L);
-
-};
+namespace nxlua::lua::pipe {
+namespace filter = nx::pipe::filter;
+extern std::string pipe(const std::string& sz, nx::pipe::filter_proxy_t filter);
+}; // namespace nxlua::lua::pipe
 
 #endif

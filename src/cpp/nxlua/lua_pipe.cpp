@@ -7,9 +7,22 @@ extern "C" {
 }
 
 #include "nxlua/pipe.h"
+#include "utils.h"
 
-namespace nxlua {
+#include <sstream>
 
-void lua_pipe_open(lua_State* L) { }
+namespace nxlua::lua::pipe {
 
-} // namespace nxlua
+std::string pipe(const std::string& sz, nx::pipe::filter_proxy_t filter)
+{
+    std::istringstream is(sz);
+    nx::pipe::source_t source(is);
+
+    std::stringstream out;
+    nx::pipe::sink_t sink(out);
+
+    source | filter | sink;
+    return out.str();
+}
+
+}; // namespace nxlua::lua::pipe
