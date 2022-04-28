@@ -1,7 +1,7 @@
 #ifndef NXLUA_ASSERT_H
 #define NXLUA_ASSERT_H
 
-#include "log.h"
+#include "niu2x/log.h"
 #include "exception.h"
 
 #define NX_ASSERT(condition, message, ...)                                     \
