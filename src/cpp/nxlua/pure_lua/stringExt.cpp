@@ -19,21 +19,12 @@ function string:split(sep)
 	return fields
 end
 
-function string.startsWith(String, Start)
+function string.startswith(String, Start)
    return string.sub(String,1,string.len(Start))==Start
 end
 
-function string.endsWith(String, End)
+function string.endswith(String, End)
    return End =='' or string.sub(String,-string.len(End))==End
-end
-
-function string:splitExt()
-	local s, e = self:find('%.[^/]+$')
-	if s == nil then 
-		return self, ''
-	else
-		return self:sub(1, s-1), self:sub(s, e)
-	end
 end
 
 local _htmlspecialchars_set = {}

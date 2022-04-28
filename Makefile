@@ -4,6 +4,7 @@ luas := PreFix.lua \
 		mathExt.lua \
 		stringExt.lua \
 		tableExt.lua \
+		path_utils.lua \
 		appInit.lua
 
 toluas := image/image.pkg
