@@ -1,5 +1,14 @@
-luas := class.lua \
-		Image.lua
+luas := PreFix.lua \
+		class.lua \
+		Image.lua \
+		mathExt.lua \
+		stringExt.lua \
+		tableExt.lua \
+		path_utils.lua \
+		appInit.lua
+
+toluas := image/image.pkg \
+			lua_pipe.pkg
 
 cpps := $(addprefix src/cpp/nxlua/pure_lua/, $(luas:.lua=.cpp))
 headers := $(addprefix src/cpp/nxlua/pure_lua/, $(luas:.lua=.h))
@@ -22,8 +31,6 @@ src/cpp/nxlua/pure_lua_open.cpp: $(addprefix src/lua/nxlua/, $(luas)) \
 								m4/pure_lua_open.cpp.m4
 	@m4 -DLUAS="$(luas)" m4/pure_lua_open.cpp.m4 > $@
 	clang-format -i $@
-
-toluas := image/image.pkg
 
 tolua: $(addprefix src/cpp/nxlua/tolua/, $(toluas:.pkg=_binding.cpp)) \
 		src/cpp/nxlua/tolua_libs_open.cpp

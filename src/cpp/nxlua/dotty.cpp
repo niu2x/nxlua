@@ -17,10 +17,9 @@ extern "C" {
 
 #include <linenoise.hpp>
 
-#define stringify(s)   __stringify(s)
-#define __stringify(s) #s
+#include "utils.h"
 
-static const char* progname = stringify(CMAKE_PROJECT_NAME);
+static const char* progname = stringify(NXLUA_PROJECT_NAME);
 
 static void lstop(lua_State* L, lua_Debug* ar)
 {

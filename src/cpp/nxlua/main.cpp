@@ -5,6 +5,7 @@ extern "C" {
 #include <lua.h>
 #include <lualib.h>
 #include <lauxlib.h>
+#include <luv/src/luv.h>
 }
 
 extern "C" {
@@ -13,7 +14,6 @@ extern int luaopen_cjson(lua_State* l);
 }
 
 #include <tolua++.h>
-#include <uv.h>
 
 TOLUA_API int tolua_image_open(lua_State* tolua_S);
 extern void pure_lua_open(lua_State* L);
@@ -21,6 +21,8 @@ extern void dotty(lua_State* L);
 extern void tolua_libs_open(lua_State* L);
 
 #include "image/image.h"
+#include "os_ext.h"
+#include "utils.h"
 
 struct params_t {
     char* input_file;
@@ -34,7 +36,28 @@ static void params_parse(struct params_t* self, int argc, char* argv[])
     }
 }
 
-static void run_interactive(lua_State* L) { dotty(L); }
+static void run_interactive(lua_State* L)
+{
+    std::cout << stringify(NXLUA_PROJECT_NAME) << "("
+              << stringify(NXLUA_PROJECT_VERSION) << "-"
+              << stringify(NXLUA_GIT_HASH) << ")" << std::endl;
+    dotty(L);
+}
+
+static void save_argv(lua_State* L, int argc, char* argv[])
+{
+    lua_newtable(L);
+    lua_newtable(L);
+
+    for (int i = 0; i < argc; i++) {
+        lua_pushstring(L, argv[i]);
+        lua_rawseti(L, -2, i + 1);
+    }
+
+    lua_setfield(L, -2, "argv");
+    lua_setglobal(L, "sys");
+}
+
 static void run(lua_State* L, const char* input_file)
 {
     if (luaL_dofile(L, input_file)) {
@@ -48,6 +71,9 @@ static void open_libs(lua_State* L)
     luaopen_bit(L);
     luaopen_cjson(L);
     tolua_libs_open(L);
+    luaopen_luv(L);
+    lua_setglobal(L, "luv");
+    nxlua::lua_os_ext_open(L);
     pure_lua_open(L);
 }
 
@@ -58,6 +84,8 @@ int main(int argc, char* argv[], char* env[])
     params_parse(&params, argc, argv);
 
     auto L = luaL_newstate();
+    save_argv(L, argc - 1, argv + 1);
+
     open_libs(L);
 
     bool interactive = !params.input_file;

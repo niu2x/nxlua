@@ -13,42 +13,48 @@ env:
 jobs:
   linux-build:
     name: "linux build"
-    runs-on: "ubuntu-latest"
+    runs-on: "ubuntu-20.04"
 
     steps:
       - uses: actions/checkout@v3
+        with:
+          submodules: 'true'
 
       - name: "Build & test"
         run: |
           cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
           cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
+          cd ${{github.workspace}}/build && cpack -G ZIP
 
       - uses: actions/upload-artifact@master
         with:
           name: linux-artifact
-          path: ${{github.workspace}}/build/bin/
+          path: ${{github.workspace}}/build/packages/
 
       
   windows-build:
     name: "windows build"
-    runs-on: "windows-latest"
+    runs-on: "windows-2022"
 
     steps:
       - uses: actions/checkout@v3
+        with:
+          submodules: 'true'
 
       - name: "Build & test"
         run: |
           cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
           cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
+          cd ${{github.workspace}}/build && cpack -G ZIP
 
       - uses: actions/upload-artifact@master
         with:
           name: windows-artifact
-          path: ${{github.workspace}}/build/bin/
+          path: ${{github.workspace}}/build/packages/
 
   release:
     name: "release"
-    runs-on: "ubuntu-latest"
+    runs-on: "ubuntu-20.04"
     needs:
       - linux-build
       - windows-build
