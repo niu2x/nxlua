@@ -22,6 +22,7 @@ std::string pipe(const std::string& sz, nx::pipe::filter_proxy_t filter)
     nx::pipe::sink_t sink(out);
 
     source | filter | sink;
+
     return out.str();
 }
 
