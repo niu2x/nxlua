@@ -22,6 +22,10 @@
 #define TOLUA_VERSION "tolua++-1.0.92"
 
 #ifdef __cplusplus
+    #include <string>
+#endif
+
+#ifdef __cplusplus
 extern "C" {
 #endif
 
@@ -155,12 +159,13 @@ TOLUA_API void tolua_dobuffer(
 TOLUA_API int class_gc_event(lua_State* L);
 
 #ifdef __cplusplus
-static inline const char* tolua_tocppstring(
+static inline std::string tolua_tocppstring(
     lua_State* L, int narg, const char* def)
 {
+    size_t len = 0;
+    const char* s = lua_tolstring(L, narg, &len);
 
-    const char* s = tolua_tostring(L, narg, def);
-    return s ? s : "";
+    return s ? std::string(s, s + len) : def;
 };
 
 static inline const char* tolua_tofieldcppstring(
