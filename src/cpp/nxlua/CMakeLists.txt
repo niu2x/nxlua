@@ -12,7 +12,6 @@ target_link_libraries(nxlua
 	lua-5.1.5 
 	linenoise
 	cjson
-	toluapp_lib
 	uv_a
 	luv_a
 	crypto

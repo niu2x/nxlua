@@ -34,7 +34,6 @@ add_compile_definitions(NXLUA_PROJECT_VERSION=${NXLUA_PROJECT_VERSION})
 add_compile_definitions(NXLUA_GIT_HASH=${NXLUA_GIT_HASH})
 
 add_subdirectory(dependencies/lua-5.1.5)
-add_subdirectory(dependencies/toluapp)
 add_subdirectory(dependencies/cpp-linenoise)
 add_subdirectory(dependencies/LuaBitOp-1.0.2)
 add_subdirectory(dependencies/lua-cjson)
