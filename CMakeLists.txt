@@ -43,7 +43,7 @@ add_subdirectory(dependencies/luv)
 add_subdirectory(dependencies/openssl-3.0.2)
 add_subdirectory(dependencies/zlib-1.2.11)
 
-add_subdirectory(src/cpp/nxlua)
+add_subdirectory(src/cpp)
 
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 include(package)

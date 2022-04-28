@@ -6,7 +6,6 @@ extern "C" {
 #include <lauxlib.h>
 }
 
-#include "nxlua/pipe.h"
 #include "utils.h"
 
 #include <sstream>

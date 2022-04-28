@@ -1,5 +1,5 @@
 $#include "lua_pipe.h"
-$#include "nxlua/pipe.h"
+$#include "niu2x/pipe.h"
 
 $using namespace nxlua::lua;
 $using namespace nx::pipe::filter;

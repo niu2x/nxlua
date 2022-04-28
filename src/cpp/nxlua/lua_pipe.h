@@ -1,7 +1,7 @@
 #ifndef NXLUA_LUA_PIPE_H
 #define NXLUA_LUA_PIPE_H
 
-#include "nxlua/pipe.h"
+#include "niu2x/pipe.h"
 
 namespace nxlua::lua::pipe {
 namespace filter = nx::pipe::filter;

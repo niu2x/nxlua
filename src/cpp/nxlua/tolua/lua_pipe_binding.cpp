@@ -1,6 +1,6 @@
 /*
 ** Lua binding: lua_pipe
-** Generated automatically by tolua++-1.0.93 on Thu Apr 28 19:50:02 2022.
+** Generated automatically by tolua++-1.0.93 on Thu Apr 28 22:25:42 2022.
 */
 
 #ifndef __cplusplus
@@ -14,7 +14,7 @@
 TOLUA_API int tolua_lua_pipe_open(lua_State* tolua_S);
 
 #include "lua_pipe.h"
-#include "nxlua/pipe.h"
+#include "niu2x/pipe.h"
 using namespace nxlua::lua;
 using namespace nx::pipe::filter;
 
