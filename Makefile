@@ -1,6 +1,10 @@
-luas := class.lua \
+luas := PreFix.lua \
+		class.lua \
 		Image.lua \
-		utils.lua
+		mathExt.lua \
+		stringExt.lua \
+		tableExt.lua \
+		appInit.lua
 
 toluas := image/image.pkg
 

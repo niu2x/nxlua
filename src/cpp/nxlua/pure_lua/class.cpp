@@ -25,4 +25,10 @@ end
 _G.class = class
 )RAW";
 
-void pure_lua_class_open(lua_State* L) { luaL_dostring(L, source); }
+#include <iostream>
+void pure_lua_class_open(lua_State* L)
+{
+    if (luaL_dostring(L, source)) {
+        std::cerr << lua_tostring(L, -1) << std::endl;
+    }
+}
