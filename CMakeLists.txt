@@ -28,6 +28,10 @@ execute_process (
 )
 string(STRIP "${NXLUA_GIT_HASH}" NXLUA_GIT_HASH)
 
+if("${NXLUA_GIT_HASH}" STREQUAL "")
+	set(NXLUA_GIT_HASH "unknown")
+endif()
+
 
 add_compile_definitions(NXLUA_PROJECT_NAME=${CMAKE_PROJECT_NAME})
 add_compile_definitions(NXLUA_PROJECT_VERSION=${NXLUA_PROJECT_VERSION})

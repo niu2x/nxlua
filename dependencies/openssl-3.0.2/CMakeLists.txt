@@ -1,11 +1,18 @@
-if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
-	add_library(ssl STATIC IMPORTED GLOBAL)
-	add_library(crypto STATIC IMPORTED GLOBAL)
+add_library(ssl STATIC IMPORTED GLOBAL)
+add_library(crypto STATIC IMPORTED GLOBAL)
 
+
+target_include_directories(ssl INTERFACE "${CMAKE_CURRENT_LIST_DIR}/include")
+target_include_directories(crypto INTERFACE "${CMAKE_CURRENT_LIST_DIR}/include")
+
+
+if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
 	SET_TARGET_PROPERTIES(ssl PROPERTIES IMPORTED_LOCATION "${CMAKE_CURRENT_LIST_DIR}/lib64/libssl.a")
 	SET_TARGET_PROPERTIES(crypto PROPERTIES IMPORTED_LOCATION "${CMAKE_CURRENT_LIST_DIR}/lib64/libcrypto.a")
+endif()
 
-	target_include_directories(ssl INTERFACE "${CMAKE_CURRENT_LIST_DIR}/include")
-	target_include_directories(crypto INTERFACE "${CMAKE_CURRENT_LIST_DIR}/include")
 
+if(${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
+	SET_TARGET_PROPERTIES(ssl PROPERTIES IMPORTED_LOCATION "${CMAKE_CURRENT_LIST_DIR}/lib64/libcrypto_static.lib")
+	SET_TARGET_PROPERTIES(crypto PROPERTIES IMPORTED_LOCATION "${CMAKE_CURRENT_LIST_DIR}/lib64/libssl_static.lib")
 endif()

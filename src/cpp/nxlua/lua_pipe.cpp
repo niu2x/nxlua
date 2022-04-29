@@ -77,7 +77,8 @@ std::vector<filter_desc_t> filters_desc_parse(const std::string& p_filters_desc)
 
         int op_pos;
         if ((op_pos = it.find('(')) != std::string::npos) {
-            filter_desc_t desc { .name = it.substr(0, op_pos) };
+            filter_desc_t desc ;
+            desc.name = it.substr(0, op_pos);
 
             auto params_sz = it.substr(op_pos + 1, it.size() - op_pos - 2);
             boost::trim(params_sz);
@@ -100,7 +101,8 @@ std::vector<filter_desc_t> filters_desc_parse(const std::string& p_filters_desc)
             }
             result.push_back(std::move(desc));
         } else {
-            filter_desc_t desc { .name = it };
+            filter_desc_t desc ;
+            desc .name = it;
             result.push_back(std::move(desc));
         }
     }

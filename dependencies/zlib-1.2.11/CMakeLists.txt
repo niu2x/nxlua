@@ -211,3 +211,4 @@ elseif(BUILD_SHARED_LIBS AND WIN32)
 endif()
 
 target_include_directories(zlibstatic PUBLIC ${CMAKE_CURRENT_LIST_DIR})
+target_include_directories(zlibstatic PUBLIC ${CMAKE_CURRENT_BINARY_DIR})
