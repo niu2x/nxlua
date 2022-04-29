@@ -95,6 +95,9 @@ std::vector<filter_desc_t> filters_desc_parse(const std::string& p_filters_desc)
             if (params.size() > 1) {
                 desc.params[1] = std::move(params[1]);
             }
+            if (params.size() > 2) {
+                desc.params[2] = std::move(params[2]);
+            }
             result.push_back(std::move(desc));
         } else {
             filter_desc_t desc { .name = it };

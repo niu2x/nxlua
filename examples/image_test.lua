@@ -1,5 +1,7 @@
+local image_pathname = sys.argv[2]
+
 local a = Image:new_local()
-a:load("./1.png")
+a:load(image_pathname)
 print(a:save("./r0.png"))
 
 local b = a:crop(0, 0, 256, 256)
