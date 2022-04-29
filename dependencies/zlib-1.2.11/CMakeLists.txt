@@ -209,3 +209,5 @@ elseif(BUILD_SHARED_LIBS AND WIN32)
     # Creates zlib1.dll when building shared library version
     set_target_properties(zlib PROPERTIES SUFFIX "1.dll")
 endif()
+
+target_include_directories(zlibstatic PUBLIC ${CMAKE_CURRENT_LIST_DIR})
