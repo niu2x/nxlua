@@ -22,6 +22,7 @@ extern void tolua_libs_open(lua_State* L);
 
 #include "image/image.h"
 #include "os_ext.h"
+#include "byte.h"
 #include "utils.h"
 
 struct params_t {
@@ -74,6 +75,7 @@ static void open_libs(lua_State* L)
     luaopen_luv(L);
     lua_setglobal(L, "luv");
     nxlua::lua_os_ext_open(L);
+    nxlua::lua_byte_open(L);
     pure_lua_open(L);
 }
 
