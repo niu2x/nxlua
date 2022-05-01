@@ -6,9 +6,6 @@ project = 'NXLUA'
 copyright = '2022, niu2x'
 author = 'niu2x'
 
-release = '0.0.0'
-version = '0.0.0'
-
 # -- General configuration
 
 extensions = [
@@ -27,9 +24,3 @@ intersphinx_disabled_domains = ['std']
 
 templates_path = ['_templates']
 
-# -- Options for HTML output
-
-html_theme = 'sphinx_rtd_theme'
-
-# -- Options for EPUB output
-epub_show_urls = 'footnote'
