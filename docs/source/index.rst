@@ -19,7 +19,7 @@ Contents
 .. toctree::
 
    usage
-   api
+   api/index
 
 
 Dependencies

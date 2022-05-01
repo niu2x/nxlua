@@ -17,19 +17,6 @@ Downloads
 ---------------------------------------
 Binaries: https://github.com/niu2x/nxlua/releases
 
-APIS
+Documents
 ---------------------------------------
-
-Dependencies
----------------------------------------
-- boost header-only libraries
-- cpp-linenoise
-- libuv
-- lua-5.1.5
-- lua-cjson
-- LuaBitOp-1.0.2
-- luv
-- openssl-3.0.2
-- stb_image, stb_image_write
-- zlib-1.2.11
-- tolua (with some modified)
+https://nxlua.readthedocs.io/
