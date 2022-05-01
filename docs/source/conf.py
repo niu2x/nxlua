@@ -6,9 +6,6 @@ project = 'NXLUA'
 copyright = '2022, niu2x'
 author = 'niu2x'
 
-release = '0.0.0'
-version = '0.0.0'
-
 # -- General configuration
 
 extensions = [
