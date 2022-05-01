@@ -1,34 +1,43 @@
 Usage
 =====
 
-.. _installation:
+Install
+------------
+Download prebuild binaries from https://github.com/niu2x/nxlua/releases.
 
-Installation
+Examples
 ------------
 
-To use Lumache, first install it using pip:
+Hello world
+~~~~~~~~~~~~
+.. code-block:: lua
 
-.. code-block:: console
+   print('Hello World')
 
-   (.venv) $ pip install lumache
+md5
+~~~~~~~~~~~~
+.. code-block:: lua
+   
+   local md5 = pipe.pipe('Hello World', 'digest(md5)|hex')
+   print(md5)
 
-Creating recipes
-----------------
+sha256
+~~~~~~~~~~~~
+.. code-block:: lua
+   
+   local sha256 = pipe.pipe('Hello World', 'digest(sha256)|hex')
+   print(md5)
 
-To retrieve a list of random ingredients,
-you can use the ``lumache.get_random_ingredients()`` function:
 
-.. autofunction:: lumache.get_random_ingredients
+aes-128-cbc
+~~~~~~~~~~~~
+.. code-block:: lua
+   
+   local key = string.rep('A', 32)
+   local iv = string.rep('B', 16)
 
-The ``kind`` parameter should be either ``"meat"``, ``"fish"``,
-or ``"veggies"``. Otherwise, :py:func:`lumache.get_random_ingredients`
-will raise an exception.
+   local e = pipe.pipe('Hello World', string.format('encrypt(aes-128-cbc, %s, %s)', key, iv))
+   print(e)
 
-.. autoexception:: lumache.InvalidKindError
-
-For example:
-
->>> import lumache
->>> lumache.get_random_ingredients()
-['shells', 'gorgonzola', 'parsley']
-
+   local d = pipe.pipe(e, string.format('decrypt(aes-128-cbc, %s, %s)', key, iv))
+   print(d)
