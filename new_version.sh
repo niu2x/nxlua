@@ -10,4 +10,4 @@ echo $version > VERSION
 
 git commit VERSION -m "update version to $version"
 
-git tag "v${version}"
+git tag -a "create tag v${version}" "v${version}"
