@@ -5,3 +5,4 @@ API
 
    pipe
    bit
+   os
