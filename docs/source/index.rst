@@ -3,7 +3,6 @@ Welcome to NXLUA's documentation!
 
 What's it 
 ---------------------------------------
-
 - It's lua-5.1 with extra builtin libraries.
    - Image operation
    - socket
