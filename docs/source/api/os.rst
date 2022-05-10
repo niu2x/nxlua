@@ -10,9 +10,9 @@ do some dirty things (eg: filesystem)
 API Reference
 -------------
 
-os.getcwd
-~~~~~~~~~
-get current work directory.
+os.getcwd()
+~~~~~~~~~~~
+return current work directory.
 
 os.is_absolute(path)
 ~~~~~~~~~~~~~~~~~~~~
