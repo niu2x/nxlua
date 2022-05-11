@@ -132,6 +132,8 @@ end
 void pure_lua_Image_open(lua_State* L)
 {
     if (luaL_dostring(L, source)) {
-        std::cerr << lua_tostring(L, -1) << std::endl;
+        {
+            std::cerr << lua_tostring(L, -1) << std::endl;
+        }
     }
 }

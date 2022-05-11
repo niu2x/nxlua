@@ -8,6 +8,7 @@
 #include "pure_lua/appInit.h"
 #include "pure_lua/print.h"
 #include "pure_lua/F.h"
+#include "pure_lua/welcome.h"
 
 void pure_lua_open(lua_State* L)
 {
@@ -21,4 +22,5 @@ void pure_lua_open(lua_State* L)
     pure_lua_appInit_open(L);
     pure_lua_print_open(L);
     pure_lua_F_open(L);
+    pure_lua_welcome_open(L);
 }

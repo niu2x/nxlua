@@ -30,6 +30,10 @@ local function snd(_, b) return b end
 local function format(_, str)
    local outer_env = _ENV and (snd(scan_using(debug.getlocal, 3, "_ENV")) or snd(scan_using(debug.getupvalue, debug.getinfo(2, "f").func, "_ENV")) or _ENV) or getfenv(2)
    return (str:gsub("%b{}", function(block)
+      if string.sub(block,2,2) == '{' and string.sub(block, -2,-2) == '}' then
+         return string.sub(block, 2, -2)
+      end
+
       local code, fmt = block:match("{(.*):(%%.*)}")
       code = code or block:match("{(.*)}")
       local exp_env = {}

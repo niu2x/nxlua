@@ -7,7 +7,8 @@ luas := PreFix.lua \
 		path_utils.lua \
 		appInit.lua \
 		print.lua \
-		F.lua
+		F.lua \
+		welcome.lua
 
 toluas := image/image.pkg \
 			lua_pipe.pkg
@@ -21,8 +22,12 @@ pure_lua_lib: $(cpps) $(headers) \
 				src/cpp/nxlua/pure_lua_open.cpp
 	@echo $^ "=>" $@ 
 
-src/cpp/nxlua/pure_lua/%.cpp: src/lua/nxlua/%.lua m4/pure_lua.cpp.m4
-	@m4 -DNAME=$* -DLUA="[$$(cat $<)]" m4/pure_lua.cpp.m4 > $@
+# src/cpp/nxlua/pure_lua/%.cpp: src/lua/nxlua/%.lua m4/pure_lua.cpp.m4
+# 	@m4 -DNAME=$* -DLUA="[$$(cat $<)]" m4/pure_lua.cpp.m4 > $@
+# 	clang-format -i $@
+
+src/cpp/nxlua/pure_lua/%.cpp: src/lua/nxlua/%.lua nxlua/pure_lua.cpp.lua
+	nxlua/pure_lua.cpp.lua "$<" "$*" > $@
 	clang-format -i $@
 
 src/cpp/nxlua/pure_lua/%.h: src/lua/nxlua/%.lua m4/pure_lua.h.m4

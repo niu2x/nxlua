@@ -1,12 +1,10 @@
-#include "PreFix.h"
+#include "welcome.h"
 static const char* source = R"RAW(
-for k, v in pairs(os_ext) do
-	os[k] = v
-end
+
 )RAW";
 
 #include <iostream>
-void pure_lua_PreFix_open(lua_State* L)
+void pure_lua_welcome_open(lua_State* L)
 {
     if (luaL_dostring(L, source)) {
         {

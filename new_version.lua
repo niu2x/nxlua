@@ -14,6 +14,7 @@ local function usage( ... )
 end
 
 if not table.exist(upgrade_types, t) then
+	print(sys.argv[1], "invalid arguments")
 	usage()
 end
 
