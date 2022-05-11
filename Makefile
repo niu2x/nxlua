@@ -6,7 +6,8 @@ luas := PreFix.lua \
 		tableExt.lua \
 		path_utils.lua \
 		appInit.lua \
-		print.lua
+		print.lua \
+		F.lua
 
 toluas := image/image.pkg \
 			lua_pipe.pkg
