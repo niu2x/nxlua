@@ -7,7 +7,7 @@ _G.print = function ( ... )
 		if first then
 			first = false
 		else
-			io.stdout:write('\t')
+			io.stdout:write(' ')
 		end
 		if type(v) == 'table' then
 			io.stdout:write(table.tostring(v))
