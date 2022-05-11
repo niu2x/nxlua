@@ -78,6 +78,7 @@ jobs:
     needs:
       - linux-build
       - windows-build
+      - darwin-build
     steps:
       - uses: actions/download-artifact@master
         with:
