@@ -7,6 +7,7 @@ if non_interactive then
 	if os.is_relative(launcher) then
 		launcher = path_utils:join(os.getcwd(), sys.argv[1])
 	end
+	sys.launcher = launcher
 	package.path = string.format("%s/?.lua;", path_utils:dirname(launcher)) .. package.path 
 end
 )RAW";
