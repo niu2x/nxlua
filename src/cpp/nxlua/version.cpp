@@ -10,8 +10,6 @@ extern "C" {
 
 #include "utils.h"
 
-#define NAME _VERSION
-
 namespace nxlua {
 
 
@@ -28,7 +26,7 @@ void lua_version_open(lua_State* L)
     lua_pushnumber(L, NXLUA_PROJECT_VERSION_PATCH);
     lua_setfield(L, -2, "patch");
 
-    lua_setglobal(L, "_VERSION");
+    lua_setglobal(L, "NXLUA_VERSION");
 }
 
 
