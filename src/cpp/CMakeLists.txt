@@ -17,6 +17,7 @@ target_link_libraries(nxlua
 	crypto
 	ssl
 	zlibstatic
+	luafilesystem
 )
 
 target_include_directories(nxlua PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/toluapp/include)

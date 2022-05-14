@@ -51,6 +51,7 @@ add_subdirectory(dependencies/libuv EXCLUDE_FROM_ALL)
 add_subdirectory(dependencies/luv)
 add_subdirectory(dependencies/openssl-3.0.2)
 add_subdirectory(dependencies/zlib-1.2.11)
+add_subdirectory(dependencies/luafilesystem)
 
 add_subdirectory(src/cpp)
 
