@@ -44,10 +44,13 @@ local patch = tonumber(fields[3])
 
 if t == 'major' then
 	major = major + 1
+	minor = 0
+	patch = 0
 end
 
 if t == 'minor' then
 	minor = minor + 1
+	patch = 0
 end
 
 if t == 'patch' then
