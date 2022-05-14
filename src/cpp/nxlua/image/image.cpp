@@ -1,5 +1,7 @@
 #include "image.h"
 
+#include <filesystem>
+
 #include <boost/gil/algorithm.hpp>
 
 #define STB_IMAGE_IMPLEMENTATION
@@ -7,6 +9,8 @@
 
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include <stb_image_write.h>
+
+#include "nxlua/nx_assert.h"
 
 static constexpr int COMPS = 4;
 
@@ -61,11 +65,26 @@ bool image_t::save(const char* filename)
         ++b;
     }
 
-    auto success = 1
-        == stbi_write_png(filename, image_->width(), image_->height(), COMPS,
+    std::filesystem::path target = filename;
+    auto ext = target.extension();
+    int err = -1;
+    if (ext == ".png")
+        err = stbi_write_png(filename, image_->width(), image_->height(), COMPS,
             buffer, image_->width() * COMPS);
+    else if (ext == ".jpg")
+        err = stbi_write_jpg(
+            filename, image_->width(), image_->height(), COMPS, buffer, 100);
+    else if (ext == ".bmp")
+        err = stbi_write_bmp(
+            filename, image_->width(), image_->height(), COMPS, buffer);
+    else if (ext == ".tga")
+        err = stbi_write_tga(
+            filename, image_->width(), image_->height(), COMPS, buffer);
+    else
+        NX_ASSERT(false, "unsupport image format %s", ext.c_str());
+
     delete[] buffer;
-    return success;
+    return err == 1;
 }
 
 void image_t::fill(uint8_t r, uint8_t g, uint8_t b, uint8_t a)
