@@ -52,6 +52,14 @@ add_subdirectory(dependencies/luv)
 add_subdirectory(dependencies/openssl-3.0.2)
 add_subdirectory(dependencies/zlib-1.2.11)
 
+set(GLFW_BUILD_EXAMPLES OFF)
+set(GLFW_BUILD_TESTS OFF)
+set(GLFW_BUILD_DOCS OFF)
+add_subdirectory(dependencies/glfw-3.3.7)
+
+find_package(OpenGL)
+find_package(GLEW)
+
 add_subdirectory(src/cpp)
 
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")

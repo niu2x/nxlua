@@ -26,6 +26,8 @@ extern void tolua_libs_open(lua_State* L);
 #include "byte.h"
 #include "utils.h"
 
+#include "gfx/gfx.h"
+
 struct params_t {
     char* input_file;
 };
