@@ -10,7 +10,8 @@ luas := PreFix.lua \
 		F.lua \
 		welcome.lua \
 		re.lua \
-		lupa.lua
+		lupa.lua \
+		deferred.lua
 
 toluas := image/image.pkg \
 			lua_pipe.pkg
