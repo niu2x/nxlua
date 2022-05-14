@@ -37,6 +37,7 @@ Dependencies
 - tolua (with some modified)
 - luafilesystem
 - lupa
+- lpeg
 
 Downloads
 ---------------------------------------

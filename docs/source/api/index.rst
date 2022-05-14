@@ -3,14 +3,17 @@ API
 
 .. toctree::
 
-   F
-   Image
    bit
    byte
    cjson
    class
-   image_t
+   F
+   Image
    image_transform_t
+   image_t
+   lfs
+   lpeg
+   lupa
    luv
    math
    os
