@@ -1,12 +1,15 @@
-#include "welcome.h"
+#include "PreFix.h"
 #include "niu2x/pipe.h"
 
-static const uint8_t luacode_bytearray[] = { 120, 156, 3, 0, 0, 0, 0, 1 };
+static const uint8_t luacode_bytearray[] = { 120, 156, 75, 203, 47, 82, 200,
+    214, 81, 40, 83, 200, 204, 83, 40, 72, 204, 44, 42, 214, 200, 47, 142, 79,
+    173, 40, 209, 84, 72, 201, 231, 226, 204, 47, 142, 206, 142, 85, 176, 85,
+    40, 227, 74, 205, 75, 1, 0, 57, 65, 13, 237 };
 
 #include <iostream>
 #include <sstream>
 
-void pure_lua_welcome_open(lua_State* L)
+void pure_lua_nxlua_PreFix_open(lua_State* L)
 {
 
     std::string luacode(

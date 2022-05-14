@@ -8,7 +8,9 @@ luas := PreFix.lua \
 		appInit.lua \
 		print.lua \
 		F.lua \
-		welcome.lua
+		welcome.lua \
+		re.lua \
+		lupa.lua
 
 toluas := image/image.pkg \
 			lua_pipe.pkg

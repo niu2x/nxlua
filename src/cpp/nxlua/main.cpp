@@ -11,6 +11,7 @@ extern "C" {
 extern "C" {
 LUALIB_API int luaopen_bit(lua_State* L);
 extern int luaopen_cjson(lua_State* l);
+extern int luaopen_lpeg(lua_State* L);
 }
 
 #include <tolua++.h>
@@ -77,6 +78,7 @@ static void open_libs(lua_State* L)
     luaopen_luv(L);
     lua_setglobal(L, "luv");
     luaopen_lfs(L);
+    luaopen_lpeg(L);
     nxlua::lua_os_ext_open(L);
     nxlua::lua_byte_open(L);
     nxlua::lua_version_open(L);

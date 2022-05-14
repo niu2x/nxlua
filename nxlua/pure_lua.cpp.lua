@@ -36,24 +36,22 @@ for i = 1, #luacode do
 	table.insert(luacode_bytearray, v)
 end
 
-local op = '{'
-local cp = '}'
 
 luacode_bytearray = table.concat(luacode_bytearray, ',')
 
-local output = F[====[
-#include "{modulename}.h"
+local output = lupa.expand([====[
+#include "{{modulename}}.h"
 #include "niu2x/pipe.h"
 
-static const uint8_t luacode_bytearray[] = {op}
-	{luacode_bytearray}
-{cp};
+static const uint8_t luacode_bytearray[] = {
+	{{luacode_bytearray}}
+};
 
 #include <iostream>
 #include <sstream>
 
-void pure_lua_{modulename}_open(lua_State* L)
-{op}
+void pure_lua_{{modulename}}_open(lua_State* L)
+{
 	
 	std::string luacode(luacode_bytearray, luacode_bytearray+sizeof(luacode_bytearray));
 	std::istringstream is(luacode);
@@ -66,10 +64,13 @@ void pure_lua_{modulename}_open(lua_State* L)
 
     source| unzlib| sink;
 
-    if (luaL_dostring(L, out.str().c_str())) {op}
+    if (luaL_dostring(L, out.str().c_str())) {
         std::cerr << lua_tostring(L, -1) << std::endl;
-    {cp}
-{cp}
-]====]
+    }
+}
+]====], {
+	modulename = modulename,
+	luacode_bytearray = luacode_bytearray,
+})
 
 io.stdout:write(output)

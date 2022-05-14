@@ -92,7 +92,7 @@ static const uint8_t luacode_bytearray[] = { 120, 156, 189, 88, 79, 111, 171,
 #include <iostream>
 #include <sstream>
 
-void pure_lua_tableExt_open(lua_State* L)
+void pure_lua_nxlua_tableExt_open(lua_State* L)
 {
 
     std::string luacode(

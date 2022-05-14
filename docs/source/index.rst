@@ -36,6 +36,7 @@ Dependencies
 - zlib-1.2.11
 - tolua (with some modified)
 - luafilesystem
+- lupa
 
 Downloads
 ---------------------------------------
