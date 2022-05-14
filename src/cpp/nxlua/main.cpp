@@ -14,6 +14,7 @@ extern int luaopen_cjson(lua_State* l);
 }
 
 #include <tolua++.h>
+#include "lfs.h"
 
 TOLUA_API int tolua_image_open(lua_State* tolua_S);
 extern void pure_lua_open(lua_State* L);
@@ -75,6 +76,7 @@ static void open_libs(lua_State* L)
     tolua_libs_open(L);
     luaopen_luv(L);
     lua_setglobal(L, "luv");
+    luaopen_lfs(L);
     nxlua::lua_os_ext_open(L);
     nxlua::lua_byte_open(L);
     nxlua::lua_version_open(L);

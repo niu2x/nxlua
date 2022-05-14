@@ -35,6 +35,7 @@ Dependencies
 - stb_image, stb_image_write
 - zlib-1.2.11
 - tolua (with some modified)
+- luafilesystem
 
 Downloads
 ---------------------------------------
