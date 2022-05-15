@@ -27,6 +27,7 @@ extern void tolua_libs_open(lua_State* L);
 #include "version.h"
 #include "byte.h"
 #include "thread/thread_group.h"
+#include "thread/io_context.h"
 #include "utils.h"
 
 struct params_t {
@@ -97,13 +98,11 @@ int main(int argc, char* argv[], char* env[])
 
     open_libs(L);
 
-    nxlua::thread::test();
-    
     bool interactive = !params.input_file;
 
-    if (interactive)
+    if (interactive) {
         run_interactive(L);
-    else
+    } else
         run(L, params.input_file);
 
     lua_close(L);

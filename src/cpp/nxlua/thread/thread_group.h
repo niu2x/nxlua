@@ -9,49 +9,33 @@
 
 namespace nxlua::thread {
 
-	// class thread_wrapper_t: private boost::noncopyable {
-	// public:
-	// 	thread_wrapper_t();
-	// 	~thread_wrapper_t();
+class thread_group_t : private boost::noncopyable {
+public:
+    thread_group_t();
+    ~thread_group_t();
 
-	// 	thread_wrapper_t(thread_wrapper_t &&) = default;
-	// 	thread_wrapper_t& operator=(thread_wrapper_t &&) = default;
+    thread_group_t(thread_group_t&&) = default;
+    thread_group_t& operator=(thread_group_t&&) = default;
 
-	// 	template<class Func, class ... Args>
-	// 	void run(Func &&func, Args && ... args, std::function<void()> callback) {
+    template <class Func, class... Args>
+    void add_thread(Func&& func, Args&&... args)
+    {
+        _add_thread(std::thread([=]() {
+            func(std::forward<Args>(args)...);
+            _remove_thread(std::this_thread::get_id());
+        }));
+    }
 
-	// 	}
-	// };
+    void join_all();
 
-	class thread_group_t: private boost::noncopyable {
-	public:
-		thread_group_t();
-		~thread_group_t();
+private:
+    std::mutex cls_mutex_;
+    using lock_t = std::lock_guard<std::mutex>;
 
-		thread_group_t(thread_group_t &&) = default;
-		thread_group_t& operator=(thread_group_t &&) = default;
-
-		template<class Func, class ... Args>
-		void add_thread(Func &&func, Args && ... args) {
-			// _add_thread(std::thread(std::forward<Params>(params) ... ));
-			_add_thread(std::thread([&](){
-				func(std::forward<Args>(args) ...);
-				_remove_thread(std::this_thread::get_id());
-			}));
-		}
-
-		void join_all();
-	private:
-
-		std::mutex cls_mutex_;
-		using lock_t = std::lock_guard<std::mutex>;
-
-		void _add_thread(std::thread && th);
-		void _remove_thread(const std::thread::id &tid);
-		std::list<std::thread> threads_;
-	};
-
-	void test();
+    void _add_thread(std::thread&& th);
+    void _remove_thread(const std::thread::id& tid);
+    std::list<std::thread> threads_;
+};
 }
 
 #endif
