@@ -8,6 +8,7 @@ API
    cjson
    class
    F
+   http
    Image
    image_transform_t
    image_t

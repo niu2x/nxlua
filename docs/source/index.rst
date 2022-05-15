@@ -38,6 +38,7 @@ Dependencies
 - luafilesystem
 - lupa
 - lpeg
+- curl-7.83.1
 
 Downloads
 ---------------------------------------
