@@ -43,6 +43,11 @@ add_compile_definitions(NXLUA_PROJECT_VERSION_PATCH=${CMAKE_PROJECT_VERSION_PATC
 
 add_compile_definitions(NXLUA_GIT_HASH=${NXLUA_GIT_HASH})
 
+if("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
+else()
+    add_compile_definitions(NX_LOG_LEVEL=2)
+endif()
+
 add_subdirectory(dependencies/lua-5.1.5)
 add_subdirectory(dependencies/cpp-linenoise)
 add_subdirectory(dependencies/LuaBitOp-1.0.2)

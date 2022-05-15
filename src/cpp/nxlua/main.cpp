@@ -29,6 +29,7 @@ extern void tolua_libs_open(lua_State* L);
 #include "thread/thread_group.h"
 #include "thread/io_context.h"
 #include "utils.h"
+#include "http/send.h"
 
 struct params_t {
     char* input_file;
@@ -93,10 +94,18 @@ int main(int argc, char* argv[], char* env[])
     struct params_t params;
     params_parse(&params, argc, argv);
 
+    nxlua::http::setup();
+
     auto L = luaL_newstate();
     save_argv(L, argc - 1, argv + 1);
 
     open_libs(L);
+
+    // auto req = std::make_unique<nxlua::http::request_t>();
+    // req->set_url("http://www.baidu.com");
+    // nxlua::http::send(std::move(req), [](auto resp){
+    //     printf("resp %s\n", resp->body().c_str());
+    // });
 
     bool interactive = !params.input_file;
 
@@ -106,6 +115,8 @@ int main(int argc, char* argv[], char* env[])
         run(L, params.input_file);
 
     lua_close(L);
+
+    nxlua::http::cleanup();
 
     // nxlua::image_t image;
     // image.load("./1.png");

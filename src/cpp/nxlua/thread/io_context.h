@@ -20,7 +20,7 @@ public:
     io_context_t& operator=(io_context_t&&) = default;
 
     void run();
-    void close();
+    void stop();
 
     void post(task_t task);
 

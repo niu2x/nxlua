@@ -26,22 +26,25 @@ void io_context_t::post(task_t task)
 void io_context_t::run()
 {
     std::unique_lock<std::mutex> lk(tasks_mutex_);
-    while (tasks_.size() > 0) {
-        auto task = std::move(tasks_.front());
-        tasks_.pop_front();
-        lk.unlock();
+    while (true) {
+        while (tasks_.size() > 0) {
+            auto task = std::move(tasks_.front());
+            tasks_.pop_front();
+            lk.unlock();
 
-        task();
+            task();
+            lk.lock();
+        }
 
-        lk.lock();
-    }
-
-    if (keep_alive_ && (!closed_)) {
-        tasks_cv_.wait(lk, [this] { return tasks_.size() > 0 || closed_; });
+        if (keep_alive_ && (!closed_)) {
+            tasks_cv_.wait(lk, [this] { return tasks_.size() > 0 || closed_; });
+        } else {
+            break;
+        }
     }
 }
 
-void io_context_t::close()
+void io_context_t::stop()
 {
     std::lock_guard<std::mutex> _(tasks_mutex_);
     closed_ = true;
