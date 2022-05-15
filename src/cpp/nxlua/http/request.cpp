@@ -41,6 +41,7 @@ std::unique_ptr<response_t> request_t::send()
 
         curl_easy_setopt(curl, CURLOPT_URL, url_.c_str());
 
+        curl_easy_setopt(curl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
         curl_easy_setopt(curl, CURLOPT_NOPROGRESS, 1L);
 
         curl_easy_setopt(curl, CURLOPT_MAXREDIRS, 8L);
@@ -55,11 +56,16 @@ std::unique_ptr<response_t> request_t::send()
         auto curl_method = curl_methods[method_];
         curl_easy_setopt(curl, curl_method, 1L);
 
+        if (method_ == POST) {
+            curl_easy_setopt(curl, CURLOPT_POSTFIELDS, body_.c_str());
+            curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, -1L);
+        }
+
         if (header_.size() > 0) {
             for (auto& v : header_) {
-                header_list = curl_slist_append(header_list, v.first.c_str());
-                header_list = curl_slist_append(header_list, ":");
-                header_list = curl_slist_append(header_list, v.second.c_str());
+                std::stringstream os;
+                os << v.first << ":" << v.second;
+                header_list = curl_slist_append(header_list, os.str().c_str());
             }
             curl_easy_setopt(curl, CURLOPT_HTTPHEADER, header_list);
         }
@@ -72,8 +78,14 @@ std::unique_ptr<response_t> request_t::send()
 
         curl_easy_setopt(curl, CURLOPT_HEADERFUNCTION, writeFunction);
         curl_easy_setopt(curl, CURLOPT_HEADERDATA, &response_header);
+        curl_easy_setopt(curl, CURLOPT_NOSIGNAL, 1L);
 
+        curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, 4L);
+        curl_easy_setopt(curl, CURLOPT_TIMEOUT, 8L);
+
+        printf("preform 1\n");
         auto res = curl_easy_perform(curl);
+        printf("preform 2\n");
 
         response->set_curl_code(res);
         response->set_header(response_header.str());
@@ -96,9 +108,8 @@ std::unique_ptr<response_t> request_t::send()
 
         /* always cleanup */
         curl_easy_cleanup(curl);
-        return response;
     }
-    return nullptr;
+    return response;
 }
 
 void request_t::set_header(const std::string& key, std::string value)

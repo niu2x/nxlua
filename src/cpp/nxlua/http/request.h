@@ -37,10 +37,13 @@ public:
 
     void set_header(const std::string& key, std::string value);
 
+    void set_body(std::string body) { body_ = std::move(body); }
+
 private:
 	std::string url_;
     method_t method_;
     std::map<std::string, std::string> header_;
+    std::string body_;
 };
 
 }

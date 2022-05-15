@@ -96,14 +96,14 @@ int main(int argc, char* argv[], char* env[])
     struct params_t params;
     params_parse(&params, argc, argv);
 
-    nxlua::http::setup();
-
     auto L = luaL_newstate();
 
     save_argv(L, argc - 1, argv + 1);
 
     open_libs(L);
     main_L = L;
+
+    nxlua::http::setup();
 
     // auto req = std::make_unique<nxlua::http::request_t>();
     // req->set_url("http://www.baidu.com");
@@ -118,10 +118,10 @@ int main(int argc, char* argv[], char* env[])
     } else
         run(L, params.input_file);
 
+    nxlua::http::cleanup();
+
     main_L = nullptr;
     lua_close(L);
-
-    nxlua::http::cleanup();
 
     // nxlua::image_t image;
     // image.load("./1.png");
