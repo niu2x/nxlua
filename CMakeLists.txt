@@ -19,6 +19,7 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
+set(BUILD_SHARED_LIBS OFF)
 
 message(STATUS "build for ${CMAKE_SYSTEM_NAME}")
 
@@ -53,6 +54,9 @@ add_subdirectory(dependencies/openssl-3.0.2)
 add_subdirectory(dependencies/zlib-1.2.11)
 add_subdirectory(dependencies/luafilesystem)
 add_subdirectory(dependencies/lpeg-1.0.2)
+
+set(BUILD_TESTING OFF)
+add_subdirectory(dependencies/curl-7.83.1)
 
 add_subdirectory(src/cpp)
 

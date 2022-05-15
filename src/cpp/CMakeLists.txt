@@ -19,6 +19,7 @@ target_link_libraries(nxlua
 	zlibstatic
 	luafilesystem
 	lpeg
+	libcurl
 )
 
 target_include_directories(nxlua PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/toluapp/include)
