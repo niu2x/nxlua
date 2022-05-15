@@ -13,7 +13,11 @@ public:
 
 static curl_global_t curl_global;
 
-request_t::request_t() { }
+request_t::request_t()
+: method_(GET)
+{
+}
+
 request_t::~request_t() { }
 
 static size_t writeFunction(
@@ -32,6 +36,9 @@ std::unique_ptr<response_t> request_t::send()
         /* First set the URL that is about to receive our POST. This URL can
            just as well be a https:// URL if that is what should receive the
            data. */
+
+        struct curl_slist* header_list = NULL;
+
         curl_easy_setopt(curl, CURLOPT_URL, url_.c_str());
 
         curl_easy_setopt(curl, CURLOPT_NOPROGRESS, 1L);
@@ -39,14 +46,38 @@ std::unique_ptr<response_t> request_t::send()
         curl_easy_setopt(curl, CURLOPT_MAXREDIRS, 8L);
         curl_easy_setopt(curl, CURLOPT_TCP_KEEPALIVE, 1L);
 
+        CURLoption curl_methods[] = {
+            CURLOPT_HTTPGET,
+            CURLOPT_POST,
+            CURLOPT_PUT,
+
+        };
+        auto curl_method = curl_methods[method_];
+        curl_easy_setopt(curl, curl_method, 1L);
+
+        if (header_.size() > 0) {
+            for (auto& v : header_) {
+                header_list = curl_slist_append(header_list, v.first.c_str());
+                header_list = curl_slist_append(header_list, ":");
+                header_list = curl_slist_append(header_list, v.second.c_str());
+            }
+            curl_easy_setopt(curl, CURLOPT_HTTPHEADER, header_list);
+        }
+
         std::stringstream response_data;
+        std::stringstream response_header;
 
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writeFunction);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response_data);
 
+        curl_easy_setopt(curl, CURLOPT_HEADERFUNCTION, writeFunction);
+        curl_easy_setopt(curl, CURLOPT_HEADERDATA, &response_header);
+
         auto res = curl_easy_perform(curl);
 
         response->set_curl_code(res);
+        response->set_header(response_header.str());
+
         /* Check for errors */
         if (res != CURLE_OK)
             NX_LOG_E(
@@ -59,11 +90,20 @@ std::unique_ptr<response_t> request_t::send()
                 response->set_body(response_data.str());
             }
         }
+
+        if (header_list)
+            curl_slist_free_all(header_list);
+
         /* always cleanup */
         curl_easy_cleanup(curl);
         return response;
     }
     return nullptr;
+}
+
+void request_t::set_header(const std::string& key, std::string value)
+{
+    header_[key] = std::move(value);
 }
 
 } // namespace nxlua::http

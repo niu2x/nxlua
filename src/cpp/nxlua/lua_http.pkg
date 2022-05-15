@@ -4,12 +4,23 @@ $#include "lua_http.h"
 $using namespace nxlua;
 
 namespace http {
+	
+	enum method_t {
+	    GET,
+	    POST,
+	    PUT,
+	};
+
 
 	class request_t {
 		request_t();
 		~request_t();
 
     	void set_url(std::string url);
+
+    	void set_method(method_t m);
+    	void set_header(const std::string& key, std::string value);
+
 	};
 
 	class response_t {
@@ -17,6 +28,7 @@ namespace http {
 		~response_t();
 
     	const std::string& body() const;
+    	const std::string& header() const;
 	};
 
 	void lua_send @ send(request_t *request, lua_Function handler);

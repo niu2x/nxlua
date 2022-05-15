@@ -23,13 +23,16 @@ public:
     int curl_code() const { return curl_code_; }
 
     const std::string& body() const { return body_; }
-
     void set_body(std::string body) { body_ = std::move(body); }
+
+    const std::string& header() const { return header_; }
+    void set_header(std::string header) { header_ = std::move(header); }
 
 private:
     int http_code_;
     int curl_code_;
     std::string body_;
+    std::string header_;
 };
 
 }

@@ -19,7 +19,7 @@ void lua_send(request_t* request, int handler)
     auto func_id = luaL_ref(L, LUA_REGISTRYINDEX);
 
     auto req = std::make_unique<request_t>();
-    *req = *request;
+    *req = std::move(*request);
 
     send(std::move(req), [L, func_id](auto resp) {
         lua_rawgeti(L, LUA_REGISTRYINDEX, func_id);
