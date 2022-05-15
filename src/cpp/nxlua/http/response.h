@@ -10,10 +10,10 @@ public:
     response_t();
     ~response_t();
 
-    response_t(const response_t&) = default;
+    response_t(const response_t&) = delete;
     response_t(response_t&&) = default;
 
-    response_t& operator=(const response_t&) = default;
+    response_t& operator=(const response_t&) = delete;
     response_t& operator=(response_t&&) = default;
 
     void set_http_code(int s) { http_code_ = s; }

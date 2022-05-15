@@ -1,0 +1,25 @@
+$#include "http/send.h"
+$#include "lua_http.h"
+
+$using namespace nxlua;
+
+namespace http {
+
+	class request_t {
+		request_t();
+		~request_t();
+
+    	void set_url(std::string url);
+	};
+
+	class response_t {
+		response_t();
+		~response_t();
+
+    	const std::string& body() const;
+	};
+
+	void lua_send @ send(request_t *request, lua_Function handler);
+
+};
+

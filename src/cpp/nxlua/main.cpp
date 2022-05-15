@@ -35,6 +35,8 @@ struct params_t {
     char* input_file;
 };
 
+lua_State* main_L = nullptr;
+
 static void params_parse(struct params_t* self, int argc, char* argv[])
 {
     self->input_file = nullptr;
@@ -97,9 +99,11 @@ int main(int argc, char* argv[], char* env[])
     nxlua::http::setup();
 
     auto L = luaL_newstate();
+
     save_argv(L, argc - 1, argv + 1);
 
     open_libs(L);
+    main_L = L;
 
     // auto req = std::make_unique<nxlua::http::request_t>();
     // req->set_url("http://www.baidu.com");
@@ -114,6 +118,7 @@ int main(int argc, char* argv[], char* env[])
     } else
         run(L, params.input_file);
 
+    main_L = nullptr;
     lua_close(L);
 
     nxlua::http::cleanup();

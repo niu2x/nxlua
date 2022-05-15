@@ -14,7 +14,8 @@ luas := PreFix.lua \
 		deferred.lua
 
 toluas := image/image.pkg \
-			lua_pipe.pkg
+			lua_pipe.pkg \
+			lua_http.pkg
 
 cpps := $(addprefix src/cpp/nxlua/pure_lua/, $(luas:.lua=.cpp))
 headers := $(addprefix src/cpp/nxlua/pure_lua/, $(luas:.lua=.h))
