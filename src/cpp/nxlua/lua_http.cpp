@@ -27,8 +27,6 @@ void lua_send(request_t* request, int handler)
         response_t* response
             = (http::response_t*)Mtolua_new((http::response_t)());
         *response = std::move(*resp);
-
-        printf("response %p\n", response);
         tolua_pushusertype(L, (void*)response, "http::response_t");
         tolua_register_gc(L, lua_gettop(L));
         lua_call(L, 1, 0);
