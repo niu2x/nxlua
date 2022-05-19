@@ -32,24 +32,49 @@ extern void tolua_libs_open(lua_State* L);
 #include "http/send.h"
 
 struct params_t {
-    char* input_file;
+    const char* input_file;
+    bool version;
+    bool help;
 };
 
 lua_State* main_L = nullptr;
 
-static void params_parse(struct params_t* self, int argc, char* argv[])
+static int params_parse(struct params_t* self, int argc, char* argv[])
 {
-    self->input_file = nullptr;
-    if (argc >= 2) {
-        self->input_file = argv[1];
+    int nr_consumed_args = 1;
+    for (; self->input_file == nullptr && nr_consumed_args < argc;
+         nr_consumed_args++) {
+        const char* arg = argv[nr_consumed_args];
+        if (arg[0] == '-') {
+            if (!strcmp(arg, "-v") || !strcmp(arg, "--version")) {
+                self->version = true;
+                continue;
+            }
+
+            if (!strcmp(arg, "-h") || !strcmp(arg, "--help")) {
+                self->help = true;
+                continue;
+            }
+
+        } else {
+            self->input_file = arg;
+        }
     }
+    return nr_consumed_args;
 }
 
-static void run_interactive(lua_State* L)
+static void show_help() { std::cout << "NXLUA Help TODO" << std::endl; }
+
+static void show_version()
 {
     std::cout << stringify(NXLUA_PROJECT_NAME) << "("
               << stringify(NXLUA_PROJECT_VERSION) << "-"
               << stringify(NXLUA_GIT_HASH) << ")" << std::endl;
+}
+
+static void run_interactive(lua_State* L)
+{
+    show_version();
     dotty(L);
 }
 
@@ -94,11 +119,12 @@ int main(int argc, char* argv[], char* env[])
 {
 
     struct params_t params;
-    params_parse(&params, argc, argv);
+    memset(&params, 0, sizeof(params));
+    int nr_consumed_args = params_parse(&params, argc, argv);
 
     auto L = luaL_newstate();
 
-    save_argv(L, argc - 1, argv + 1);
+    save_argv(L, argc - nr_consumed_args, argv + nr_consumed_args);
 
     open_libs(L);
     main_L = L;
@@ -113,7 +139,11 @@ int main(int argc, char* argv[], char* env[])
 
     bool interactive = !params.input_file;
 
-    if (interactive) {
+    if (params.version) {
+        show_version();
+    } else if (params.help) {
+        show_help();
+    } else if (interactive) {
         run_interactive(L);
     } else
         run(L, params.input_file);

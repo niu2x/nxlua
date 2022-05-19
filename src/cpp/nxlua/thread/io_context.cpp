@@ -10,7 +10,7 @@ io_context_t::io_context_t()
 , keep_alive_(false)
 {
 }
-io_context_t::~io_context_t() { printf("!io_context_t\n"); }
+io_context_t::~io_context_t() { NX_LOG_D("~io_context_t"); }
 
 void io_context_t::post(task_t task)
 {
