@@ -43,8 +43,7 @@ lua_State* main_L = nullptr;
 static int params_parse(struct params_t* self, int argc, char* argv[])
 {
     int nr_consumed_args = 1;
-    for (; self->input_file == nullptr && nr_consumed_args < argc;
-         nr_consumed_args++) {
+    for (; nr_consumed_args < argc; nr_consumed_args++) {
         const char* arg = argv[nr_consumed_args];
         if (arg[0] == '-') {
             if (!strcmp(arg, "-v") || !strcmp(arg, "--version")) {
@@ -59,6 +58,7 @@ static int params_parse(struct params_t* self, int argc, char* argv[])
 
         } else {
             self->input_file = arg;
+            break;
         }
     }
     return nr_consumed_args;
