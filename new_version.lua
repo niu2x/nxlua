@@ -61,4 +61,4 @@ local version = string.format('%d.%d.%d', major, minor, patch)
 writefile(version_file, version .. '\n')
 
 os.execute(F[[git commit VERSION -m "update version to {version}"]])
-os.execute(F[[git tag -a "v{version}" -m "create tag v{version}"]])
+os.execute(F[[git tag -a "v{version}" -m "create tag v{version}" -s]])
