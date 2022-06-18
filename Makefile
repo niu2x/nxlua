@@ -11,6 +11,7 @@ luas := PreFix.lua \
 		welcome.lua \
 		re.lua \
 		lupa.lua \
+		dhttp.lua \
 		deferred.lua
 
 toluas := image/image.pkg \
@@ -47,9 +48,11 @@ tolua: $(addprefix src/cpp/nxlua/tolua/, $(toluas:.pkg=_binding.cpp)) \
 		src/cpp/nxlua/tolua_libs_open.cpp
 	@echo $^ "=>" $@ 
 
-src/cpp/nxlua/tolua/%_binding.cpp: src/cpp/nxlua/%.pkg
+src/cpp/nxlua/tolua/%_binding.cpp: src/cpp/nxlua/%.pkg Makefile
 	mkdir -p $$(dirname $@)
 	tolua++5.1 $< > $@
+	sed '/tolua_S,"new"/d' -i $@
+	sed '/tolua_S,"new_local"/d' -i $@
 	clang-format -i $@
 
 src/cpp/nxlua/tolua_libs_open.cpp: $(addprefix src/cpp/nxlua/, $(toluas)) m4/tolua_libs_open.cpp.m4

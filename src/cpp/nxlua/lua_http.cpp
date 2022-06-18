@@ -30,7 +30,6 @@ void lua_send(request_t* request, int handler)
         tolua_pushusertype(L, (void*)response, "http::response_t");
         tolua_register_gc(L, lua_gettop(L));
         lua_call(L, 1, 0);
-
         luaL_unref(L, LUA_REGISTRYINDEX, func_id);
     });
 }

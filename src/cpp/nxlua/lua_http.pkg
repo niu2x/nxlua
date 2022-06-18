@@ -29,6 +29,8 @@ namespace http {
 
     	const std::string& body() const;
     	const std::string& header() const;
+    	int http_code() const;
+    	int curl_code() const;
 	};
 
 	void lua_send @ send(request_t *request, lua_Function handler);

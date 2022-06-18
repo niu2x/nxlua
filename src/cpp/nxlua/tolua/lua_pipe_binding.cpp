@@ -1,6 +1,6 @@
 /*
 ** Lua binding: lua_pipe
-** Generated automatically by tolua++-1.0.93 on Sun May 15 15:58:15 2022.
+** Generated automatically by tolua++-1.0.93 on Sat Jun 18 23:20:19 2022.
 */
 
 #ifndef __cplusplus
@@ -1612,9 +1612,6 @@ TOLUA_API int tolua_lua_pipe_open(lua_State* tolua_S)
     tolua_cclass(tolua_S, "base64_t", "pipe::filter::base64_t", "", NULL);
 #endif
     tolua_beginmodule(tolua_S, "base64_t");
-    tolua_function(tolua_S, "new", tolua_lua_pipe_pipe_filter_base64_t_new00);
-    tolua_function(
-        tolua_S, "new_local", tolua_lua_pipe_pipe_filter_base64_t_new00_local);
     tolua_function(
         tolua_S, ".call", tolua_lua_pipe_pipe_filter_base64_t_new00_local);
     tolua_function(
@@ -1627,9 +1624,6 @@ TOLUA_API int tolua_lua_pipe_open(lua_State* tolua_S)
     tolua_cclass(tolua_S, "unbase64_t", "pipe::filter::unbase64_t", "", NULL);
 #endif
     tolua_beginmodule(tolua_S, "unbase64_t");
-    tolua_function(tolua_S, "new", tolua_lua_pipe_pipe_filter_unbase64_t_new00);
-    tolua_function(tolua_S, "new_local",
-        tolua_lua_pipe_pipe_filter_unbase64_t_new00_local);
     tolua_function(
         tolua_S, ".call", tolua_lua_pipe_pipe_filter_unbase64_t_new00_local);
     tolua_function(
@@ -1642,9 +1636,6 @@ TOLUA_API int tolua_lua_pipe_open(lua_State* tolua_S)
     tolua_cclass(tolua_S, "lower_t", "pipe::filter::lower_t", "", NULL);
 #endif
     tolua_beginmodule(tolua_S, "lower_t");
-    tolua_function(tolua_S, "new", tolua_lua_pipe_pipe_filter_lower_t_new00);
-    tolua_function(
-        tolua_S, "new_local", tolua_lua_pipe_pipe_filter_lower_t_new00_local);
     tolua_function(
         tolua_S, ".call", tolua_lua_pipe_pipe_filter_lower_t_new00_local);
     tolua_function(
@@ -1657,9 +1648,6 @@ TOLUA_API int tolua_lua_pipe_open(lua_State* tolua_S)
     tolua_cclass(tolua_S, "upper_t", "pipe::filter::upper_t", "", NULL);
 #endif
     tolua_beginmodule(tolua_S, "upper_t");
-    tolua_function(tolua_S, "new", tolua_lua_pipe_pipe_filter_upper_t_new00);
-    tolua_function(
-        tolua_S, "new_local", tolua_lua_pipe_pipe_filter_upper_t_new00_local);
     tolua_function(
         tolua_S, ".call", tolua_lua_pipe_pipe_filter_upper_t_new00_local);
     tolua_function(
@@ -1672,9 +1660,6 @@ TOLUA_API int tolua_lua_pipe_open(lua_State* tolua_S)
     tolua_cclass(tolua_S, "hex_t", "pipe::filter::hex_t", "", NULL);
 #endif
     tolua_beginmodule(tolua_S, "hex_t");
-    tolua_function(tolua_S, "new", tolua_lua_pipe_pipe_filter_hex_t_new00);
-    tolua_function(
-        tolua_S, "new_local", tolua_lua_pipe_pipe_filter_hex_t_new00_local);
     tolua_function(
         tolua_S, ".call", tolua_lua_pipe_pipe_filter_hex_t_new00_local);
     tolua_function(
@@ -1687,9 +1672,6 @@ TOLUA_API int tolua_lua_pipe_open(lua_State* tolua_S)
     tolua_cclass(tolua_S, "unhex_t", "pipe::filter::unhex_t", "", NULL);
 #endif
     tolua_beginmodule(tolua_S, "unhex_t");
-    tolua_function(tolua_S, "new", tolua_lua_pipe_pipe_filter_unhex_t_new00);
-    tolua_function(
-        tolua_S, "new_local", tolua_lua_pipe_pipe_filter_unhex_t_new00_local);
     tolua_function(
         tolua_S, ".call", tolua_lua_pipe_pipe_filter_unhex_t_new00_local);
     tolua_function(
@@ -1702,9 +1684,6 @@ TOLUA_API int tolua_lua_pipe_open(lua_State* tolua_S)
     tolua_cclass(tolua_S, "cut_t", "pipe::filter::cut_t", "", NULL);
 #endif
     tolua_beginmodule(tolua_S, "cut_t");
-    tolua_function(tolua_S, "new", tolua_lua_pipe_pipe_filter_cut_t_new00);
-    tolua_function(
-        tolua_S, "new_local", tolua_lua_pipe_pipe_filter_cut_t_new00_local);
     tolua_function(
         tolua_S, ".call", tolua_lua_pipe_pipe_filter_cut_t_new00_local);
     tolua_function(
@@ -1717,9 +1696,6 @@ TOLUA_API int tolua_lua_pipe_open(lua_State* tolua_S)
     tolua_cclass(tolua_S, "zlib_t", "pipe::filter::zlib_t", "", NULL);
 #endif
     tolua_beginmodule(tolua_S, "zlib_t");
-    tolua_function(tolua_S, "new", tolua_lua_pipe_pipe_filter_zlib_t_new00);
-    tolua_function(
-        tolua_S, "new_local", tolua_lua_pipe_pipe_filter_zlib_t_new00_local);
     tolua_function(
         tolua_S, ".call", tolua_lua_pipe_pipe_filter_zlib_t_new00_local);
     tolua_function(
@@ -1732,9 +1708,6 @@ TOLUA_API int tolua_lua_pipe_open(lua_State* tolua_S)
     tolua_cclass(tolua_S, "unzlib_t", "pipe::filter::unzlib_t", "", NULL);
 #endif
     tolua_beginmodule(tolua_S, "unzlib_t");
-    tolua_function(tolua_S, "new", tolua_lua_pipe_pipe_filter_unzlib_t_new00);
-    tolua_function(
-        tolua_S, "new_local", tolua_lua_pipe_pipe_filter_unzlib_t_new00_local);
     tolua_function(
         tolua_S, ".call", tolua_lua_pipe_pipe_filter_unzlib_t_new00_local);
     tolua_function(
@@ -1747,9 +1720,6 @@ TOLUA_API int tolua_lua_pipe_open(lua_State* tolua_S)
     tolua_cclass(tolua_S, "digest_t", "pipe::filter::digest_t", "", NULL);
 #endif
     tolua_beginmodule(tolua_S, "digest_t");
-    tolua_function(tolua_S, "new", tolua_lua_pipe_pipe_filter_digest_t_new00);
-    tolua_function(
-        tolua_S, "new_local", tolua_lua_pipe_pipe_filter_digest_t_new00_local);
     tolua_function(
         tolua_S, ".call", tolua_lua_pipe_pipe_filter_digest_t_new00_local);
     tolua_function(
@@ -1762,9 +1732,6 @@ TOLUA_API int tolua_lua_pipe_open(lua_State* tolua_S)
     tolua_cclass(tolua_S, "encrypt_t", "pipe::filter::encrypt_t", "", NULL);
 #endif
     tolua_beginmodule(tolua_S, "encrypt_t");
-    tolua_function(tolua_S, "new", tolua_lua_pipe_pipe_filter_encrypt_t_new00);
-    tolua_function(
-        tolua_S, "new_local", tolua_lua_pipe_pipe_filter_encrypt_t_new00_local);
     tolua_function(
         tolua_S, ".call", tolua_lua_pipe_pipe_filter_encrypt_t_new00_local);
     tolua_function(
@@ -1777,9 +1744,6 @@ TOLUA_API int tolua_lua_pipe_open(lua_State* tolua_S)
     tolua_cclass(tolua_S, "decrypt_t", "pipe::filter::decrypt_t", "", NULL);
 #endif
     tolua_beginmodule(tolua_S, "decrypt_t");
-    tolua_function(tolua_S, "new", tolua_lua_pipe_pipe_filter_decrypt_t_new00);
-    tolua_function(
-        tolua_S, "new_local", tolua_lua_pipe_pipe_filter_decrypt_t_new00_local);
     tolua_function(
         tolua_S, ".call", tolua_lua_pipe_pipe_filter_decrypt_t_new00_local);
     tolua_function(

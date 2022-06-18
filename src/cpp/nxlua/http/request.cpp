@@ -83,9 +83,7 @@ std::unique_ptr<response_t> request_t::send()
         curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, 4L);
         curl_easy_setopt(curl, CURLOPT_TIMEOUT, 8L);
 
-        printf("preform 1\n");
         auto res = curl_easy_perform(curl);
-        printf("preform 2\n");
 
         response->set_curl_code(res);
         response->set_header(response_header.str());

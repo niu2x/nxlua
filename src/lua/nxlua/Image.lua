@@ -56,7 +56,7 @@ function Image:rotate(angle)
 	local new_w = max_x - min_x
 	local new_h = max_y - min_y
 
-	local result = Image:new_local()
+	local result = Image()
 	result:resize(new_w, new_h)
 	result:fill(0, 0, 0, 0)
 
@@ -75,7 +75,7 @@ function Image:rotate(angle)
 end
 
 function Image:crop(x, y, w, h)
-	local result = Image:new_local()
+	local result = Image()
 	result:resize(w, h)
 
 	local transform = image_transform_t:translate(0 ,0)
@@ -89,7 +89,7 @@ function Image:crop(x, y, w, h)
 end
 
 function Image:scaleTo(w, h)
-	local result = Image:new_local()
+	local result = Image()
 	result:resize(w, h)
 
 	local transform = image_transform_t:scale(self:width()/w ,self:height()/h)

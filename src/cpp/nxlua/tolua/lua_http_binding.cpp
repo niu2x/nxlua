@@ -1,6 +1,6 @@
 /*
 ** Lua binding: lua_http
-** Generated automatically by tolua++-1.0.93 on Sun May 15 21:17:05 2022.
+** Generated automatically by tolua++-1.0.93 on Sat Jun 18 23:32:00 2022.
 */
 
 #ifndef __cplusplus
@@ -379,6 +379,72 @@ tolua_lerror:
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: http_code of class  http::response_t */
+#ifndef TOLUA_DISABLE_tolua_lua_http_http_response_t_http_code00
+static int tolua_lua_http_http_response_t_http_code00(lua_State* tolua_S)
+{
+    #ifndef TOLUA_RELEASE
+    tolua_Error tolua_err;
+    if (!tolua_isusertype(tolua_S, 1, "const http::response_t", 0, &tolua_err)
+        || !tolua_isnoobj(tolua_S, 2, &tolua_err))
+        goto tolua_lerror;
+    else
+    #endif
+    {
+        const http::response_t* self
+            = (const http::response_t*)tolua_tousertype(tolua_S, 1, 0);
+    #ifndef TOLUA_RELEASE
+        if (!self)
+            tolua_error(
+                tolua_S, "invalid 'self' in function 'http_code'", NULL);
+    #endif
+        {
+            int tolua_ret = (int)self->http_code();
+            tolua_pushnumber(tolua_S, (lua_Number)tolua_ret);
+        }
+    }
+    return 1;
+    #ifndef TOLUA_RELEASE
+tolua_lerror:
+    tolua_error(tolua_S, "#ferror in function 'http_code'.", &tolua_err);
+    return 0;
+    #endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: curl_code of class  http::response_t */
+#ifndef TOLUA_DISABLE_tolua_lua_http_http_response_t_curl_code00
+static int tolua_lua_http_http_response_t_curl_code00(lua_State* tolua_S)
+{
+    #ifndef TOLUA_RELEASE
+    tolua_Error tolua_err;
+    if (!tolua_isusertype(tolua_S, 1, "const http::response_t", 0, &tolua_err)
+        || !tolua_isnoobj(tolua_S, 2, &tolua_err))
+        goto tolua_lerror;
+    else
+    #endif
+    {
+        const http::response_t* self
+            = (const http::response_t*)tolua_tousertype(tolua_S, 1, 0);
+    #ifndef TOLUA_RELEASE
+        if (!self)
+            tolua_error(
+                tolua_S, "invalid 'self' in function 'curl_code'", NULL);
+    #endif
+        {
+            int tolua_ret = (int)self->curl_code();
+            tolua_pushnumber(tolua_S, (lua_Number)tolua_ret);
+        }
+    }
+    return 1;
+    #ifndef TOLUA_RELEASE
+tolua_lerror:
+    tolua_error(tolua_S, "#ferror in function 'curl_code'.", &tolua_err);
+    return 0;
+    #endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* function: http::lua_send */
 #ifndef TOLUA_DISABLE_tolua_lua_http_http_send00
 static int tolua_lua_http_http_send00(lua_State* tolua_S)
@@ -426,9 +492,6 @@ TOLUA_API int tolua_lua_http_open(lua_State* tolua_S)
     tolua_cclass(tolua_S, "request_t", "http::request_t", "", NULL);
 #endif
     tolua_beginmodule(tolua_S, "request_t");
-    tolua_function(tolua_S, "new", tolua_lua_http_http_request_t_new00);
-    tolua_function(
-        tolua_S, "new_local", tolua_lua_http_http_request_t_new00_local);
     tolua_function(tolua_S, ".call", tolua_lua_http_http_request_t_new00_local);
     tolua_function(tolua_S, "delete", tolua_lua_http_http_request_t_delete00);
     tolua_function(tolua_S, "set_url", tolua_lua_http_http_request_t_set_url00);
@@ -444,14 +507,15 @@ TOLUA_API int tolua_lua_http_open(lua_State* tolua_S)
     tolua_cclass(tolua_S, "response_t", "http::response_t", "", NULL);
 #endif
     tolua_beginmodule(tolua_S, "response_t");
-    tolua_function(tolua_S, "new", tolua_lua_http_http_response_t_new00);
-    tolua_function(
-        tolua_S, "new_local", tolua_lua_http_http_response_t_new00_local);
     tolua_function(
         tolua_S, ".call", tolua_lua_http_http_response_t_new00_local);
     tolua_function(tolua_S, "delete", tolua_lua_http_http_response_t_delete00);
     tolua_function(tolua_S, "body", tolua_lua_http_http_response_t_body00);
     tolua_function(tolua_S, "header", tolua_lua_http_http_response_t_header00);
+    tolua_function(
+        tolua_S, "http_code", tolua_lua_http_http_response_t_http_code00);
+    tolua_function(
+        tolua_S, "curl_code", tolua_lua_http_http_response_t_curl_code00);
     tolua_endmodule(tolua_S);
     tolua_function(tolua_S, "send", tolua_lua_http_http_send00);
     tolua_endmodule(tolua_S);

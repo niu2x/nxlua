@@ -1,6 +1,6 @@
 /*
 ** Lua binding: image
-** Generated automatically by tolua++-1.0.93 on Sun May 15 15:58:15 2022.
+** Generated automatically by tolua++-1.0.93 on Sat Jun 18 23:20:19 2022.
 */
 
 #ifndef __cplusplus
@@ -867,9 +867,6 @@ TOLUA_API int tolua_image_open(lua_State* tolua_S)
         tolua_S, "translate", tolua_image_image_transform_t_translate00);
     tolua_function(tolua_S, "scale", tolua_image_image_transform_t_scale00);
     tolua_function(tolua_S, "rotate", tolua_image_image_transform_t_rotate00);
-    tolua_function(tolua_S, "new", tolua_image_image_transform_t_new00);
-    tolua_function(
-        tolua_S, "new_local", tolua_image_image_transform_t_new00_local);
     tolua_function(tolua_S, ".call", tolua_image_image_transform_t_new00_local);
     tolua_function(tolua_S, "delete", tolua_image_image_transform_t_delete00);
     tolua_function(tolua_S, "mul", tolua_image_image_transform_t_mul00);
@@ -896,8 +893,6 @@ TOLUA_API int tolua_image_open(lua_State* tolua_S)
     tolua_variable(tolua_S, "a", tolua_get_image_t__color_t_a,
         tolua_set_image_t__color_t_a);
     tolua_endmodule(tolua_S);
-    tolua_function(tolua_S, "new", tolua_image_image_t_new00);
-    tolua_function(tolua_S, "new_local", tolua_image_image_t_new00_local);
     tolua_function(tolua_S, ".call", tolua_image_image_t_new00_local);
     tolua_function(tolua_S, "delete", tolua_image_image_t_delete00);
     tolua_function(tolua_S, "load", tolua_image_image_t_load00);
