@@ -42,26 +42,27 @@ lua_State* main_L = nullptr;
 
 static int params_parse(struct params_t* self, int argc, char* argv[])
 {
-    int nr_consumed_args = 1;
-    for (; nr_consumed_args < argc; nr_consumed_args++) {
-        const char* arg = argv[nr_consumed_args];
-        if (arg[0] == '-') {
-            if (!strcmp(arg, "-v") || !strcmp(arg, "--version")) {
-                self->version = true;
-                continue;
-            }
-
-            if (!strcmp(arg, "-h") || !strcmp(arg, "--help")) {
+    int opt;
+    while ((opt = getopt(argc, argv, "hv")) != -1) {
+        switch (opt) {
+            case 'h': {
                 self->help = true;
-                continue;
+                break;
             }
-
-        } else {
-            self->input_file = arg;
-            break;
+            case 'v': {
+                self->version = true;
+                break;
+            }
+            default: {
+                std::cerr << "unsupport option " << opt << std::endl;
+            }
         }
     }
-    return nr_consumed_args;
+
+    if (optind < argc) {
+        self->input_file = argv[optind];
+    }
+    return optind;
 }
 
 static void show_help() { std::cout << "NXLUA Help TODO" << std::endl; }
@@ -93,11 +94,13 @@ static void save_argv(lua_State* L, int argc, char* argv[])
     lua_setglobal(L, "sys");
 }
 
-static void run(lua_State* L, const char* input_file)
+static int run(lua_State* L, const char* input_file)
 {
     if (luaL_dofile(L, input_file)) {
         std::cerr << lua_tostring(L, -1) << std::endl;
+        return 1;
     }
+    return 0;
 }
 
 static void open_libs(lua_State* L)
@@ -119,6 +122,8 @@ static void open_libs(lua_State* L)
 
 int main(int argc, char* argv[], char* env[])
 {
+
+    int exit_code = 0;
 
     struct params_t params;
     memset(&params, 0, sizeof(params));
@@ -143,12 +148,14 @@ int main(int argc, char* argv[], char* env[])
 
     if (params.version) {
         show_version();
+        exit_code = 2;
     } else if (params.help) {
         show_help();
+        exit_code = 2;
     } else if (interactive) {
         run_interactive(L);
     } else
-        run(L, params.input_file);
+        exit_code = run(L, params.input_file);
 
     nxlua::http::cleanup();
 
@@ -166,5 +173,5 @@ int main(int argc, char* argv[], char* env[])
 
     // image2.save("./2.png");
 
-    return 0;
+    return exit_code;
 }
