@@ -23,6 +23,8 @@ extern void pure_lua_open(lua_State* L);
 extern void dotty(lua_State* L);
 extern void tolua_libs_open(lua_State* L);
 
+#include <niu2x/log.h>
+
 #include "image/image.h"
 #include "os_ext.h"
 #include "version.h"
@@ -36,6 +38,7 @@ struct params_t {
     const char* input_file;
     bool version;
     bool help;
+    int verbose;
 };
 
 lua_State* main_L = nullptr;
@@ -43,14 +46,14 @@ lua_State* main_L = nullptr;
 static int params_parse(struct params_t* self, int argc, char* argv[])
 {
     int opt;
-    while ((opt = getopt(argc, argv, "hv")) != -1) {
+    while ((opt = getopt(argc, argv, "dhv")) != -1) {
         switch (opt) {
             case 'h': {
                 self->help = true;
                 break;
             }
             case 'v': {
-                self->version = true;
+                self->verbose++;
                 break;
             }
             default: {
@@ -143,6 +146,9 @@ int main(int argc, char* argv[], char* env[])
     // nxlua::http::send(std::move(req), [](auto resp){
     //     printf("resp %s\n", resp->body().c_str());
     // });
+
+    int log_level = nx::log::level();
+    nx::log::set_level(params.verbose + log_level);
 
     bool interactive = !params.input_file;
 

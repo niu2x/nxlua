@@ -5,8 +5,16 @@
 
 namespace nx {
 
+static int log_level = NX_LOG_LEVEL;
+
+int log::level() { return log_level; }
+void log::set_level(int lvl) { log_level = lvl; }
+
 void log::write(int lvl, const char* filename, int line, const char* msg, ...)
 {
+    if (log_level < lvl)
+        return;
+
     static const char* level_colors[] = {
         "",
         "\x1b[31m",
