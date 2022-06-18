@@ -24,6 +24,7 @@ extern void dotty(lua_State* L);
 extern void tolua_libs_open(lua_State* L);
 
 #include <niu2x/log.h>
+#include <nxlua/config.h>
 
 #include "image/image.h"
 #include "os_ext.h"
@@ -33,6 +34,11 @@ extern void tolua_libs_open(lua_State* L);
 #include "thread/io_context.h"
 #include "utils.h"
 #include "http/send.h"
+
+#ifndef HAS_getopt
+    #include "getopt-for-windows/getopt.h"
+    #include "getopt-for-windows/getopt.c"
+#endif
 
 struct params_t {
     const char* input_file;

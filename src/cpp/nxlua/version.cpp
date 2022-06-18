@@ -8,6 +8,7 @@ extern "C" {
 #include <lauxlib.h>
 }
 
+#include <nxlua/config.h>
 #include "utils.h"
 
 namespace nxlua {
