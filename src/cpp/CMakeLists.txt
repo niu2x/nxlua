@@ -30,7 +30,6 @@ target_link_libraries(nxlua
 # add_compile_definitions(NXLUA_PROJECT_VERSION_MINOR=${CMAKE_PROJECT_VERSION_MINOR})
 # add_compile_definitions(NXLUA_PROJECT_VERSION_PATCH=${CMAKE_PROJECT_VERSION_PATCH})
 
-# add_compile_definitions(NXLUA_GIT_HASH=${NXLUA_GIT_HASH})
 
 if("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
 else()
@@ -41,6 +40,7 @@ endif()
 check_function_exists(getopt HAS_getopt)
 
 configure_file(nxlua/config.h.in nxlua/config.h)
+
 
 target_include_directories(nxlua PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/toluapp/include)
 target_include_directories(nxlua PRIVATE ${CMAKE_SOURCE_DIR}/dependencies/)
