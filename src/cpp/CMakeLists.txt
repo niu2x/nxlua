@@ -23,19 +23,10 @@ target_link_libraries(nxlua
 	luaxml
 )
 
-# add_compile_definitions(NXLUA_PROJECT_NAME=${CMAKE_PROJECT_NAME})
-
-# add_compile_definitions(NXLUA_PROJECT_VERSION=${NXLUA_PROJECT_VERSION})
-# add_compile_definitions(NXLUA_PROJECT_VERSION_MAJOR=${CMAKE_PROJECT_VERSION_MAJOR})
-# add_compile_definitions(NXLUA_PROJECT_VERSION_MINOR=${CMAKE_PROJECT_VERSION_MINOR})
-# add_compile_definitions(NXLUA_PROJECT_VERSION_PATCH=${CMAKE_PROJECT_VERSION_PATCH})
-
-
 if("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
 else()
     target_compile_definitions(nxlua PRIVATE NX_LOG_LEVEL=2)
 endif()
-
 
 check_function_exists(getopt HAS_getopt)
 
