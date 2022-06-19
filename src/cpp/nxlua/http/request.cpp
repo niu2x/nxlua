@@ -29,6 +29,7 @@ static size_t writeFunction(
 
 std::unique_ptr<response_t> request_t::send()
 {
+    NX_LOG_T("nxlua::http::request_t::send");
     auto response = std::make_unique<response_t>();
 
     auto curl = curl_easy_init();
