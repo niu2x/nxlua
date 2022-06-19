@@ -11,12 +11,6 @@ if modulename == nil then
     usage()
 end
 
-local function writefile( pathname, content )
-    local f = io.open(pathname, 'wb')
-    f:write(content)
-    f:close()
-end
-
 local output = lupa.expand([====[
 #ifndef NXLUA_PURE_LUA_{{modulename}}
 #define NXLUA_PURE_LUA_{{modulename}}

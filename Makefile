@@ -40,15 +40,15 @@ src/cpp/nxlua/pure_lua/%.h: src/lua/nxlua/%.lua nxlua/pure_lua.h.lua
 	clang-format -i $@
 
 src/cpp/nxlua/pure_lua_open.cpp: $(addprefix src/lua/nxlua/, $(luas)) \
-								m4/pure_lua_open.cpp.m4
-	@m4 -DLUAS="$(luas)" m4/pure_lua_open.cpp.m4 > $@
+								nxlua/pure_lua_open.cpp.lua
+	nxlua/pure_lua_open.cpp.lua $(luas) > $@
 	clang-format -i $@
 
 tolua: $(addprefix src/cpp/nxlua/tolua/, $(toluas:.pkg=_binding.cpp)) \
 		src/cpp/nxlua/tolua_libs_open.cpp
 	@echo $^ "=>" $@ 
 
-src/cpp/nxlua/tolua/%_binding.cpp: src/cpp/nxlua/%.pkg Makefile
+src/cpp/nxlua/tolua/%_binding.cpp: src/cpp/nxlua/%.pkg
 	mkdir -p $$(dirname $@)
 	tolua++5.1 $< > $@
 	sed '/tolua_S,"new"/d' -i $@

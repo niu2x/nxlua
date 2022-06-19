@@ -20,12 +20,6 @@ local function readfile( pathname )
 	return v
 end
 
-local function writefile( pathname, content )
-	local f = io.open(pathname, 'wb')
-	f:write(content)
-	f:close()
-end
-
 local luacode = readfile(luafile)
 luacode = pipe.pipe(luacode, "zlib(6)")
 
