@@ -56,8 +56,8 @@ src/cpp/nxlua/tolua/%_binding.cpp: src/cpp/nxlua/%.pkg
 	sed '/Generated automatically/d' -i $@
 	clang-format -i $@
 
-src/cpp/nxlua/tolua_libs_open.cpp: $(addprefix src/cpp/nxlua/, $(toluas)) m4/tolua_libs_open.cpp.m4
-	@m4 -DTOLUAS="$(toluas)" m4/tolua_libs_open.cpp.m4 > $@
+src/cpp/nxlua/tolua_libs_open.cpp: $(addprefix src/cpp/nxlua/, $(toluas)) nxlua/tolua_libs_open.cpp.lua
+	./nxlua/tolua_libs_open.cpp.lua $(toluas)> $@
 	clang-format -i $@
 
 .PHONY: pure_lua_lib tolua
