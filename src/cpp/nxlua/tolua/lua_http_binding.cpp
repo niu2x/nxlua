@@ -1,6 +1,5 @@
 /*
 ** Lua binding: lua_http
-** Generated automatically by tolua++-1.0.93 on Sat Jun 18 23:32:00 2022.
 */
 
 #ifndef __cplusplus

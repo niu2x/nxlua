@@ -1,6 +1,5 @@
 /*
 ** Lua binding: image
-** Generated automatically by tolua++-1.0.93 on Sat Jun 18 23:20:19 2022.
 */
 
 #ifndef __cplusplus
