@@ -476,7 +476,7 @@ If LONG_ONLY is nonzero, '-' as well as '--' can introduce
 long-named options.  */
 
 int _getopt_internal(int argc, char* const* argv, const char* optstring,
-    const struct option* longopts, int* longind, int long_only)
+    const struct option* longopts, int* longind, int long_only, int unused)
 {
     int print_errors = opterr;
     if (optstring[0] == ':')
