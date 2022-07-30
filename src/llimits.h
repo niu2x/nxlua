@@ -10,7 +10,7 @@
 #include <limits.h>
 #include <stddef.h>
 
-#include <nxlua/lua.h>
+#include <lua/lua.h>
 
 typedef LUAI_UINT32 lu_int32;
 

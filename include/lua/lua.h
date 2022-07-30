@@ -11,7 +11,7 @@
 #include <stdarg.h>
 #include <stddef.h>
 
-#include <nxlua/luaconf.h>
+#include <lua/luaconf.h>
 
 #define LUA_VERSION     "Lua 5.1"
 #define LUA_RELEASE     "Lua 5.1.5"

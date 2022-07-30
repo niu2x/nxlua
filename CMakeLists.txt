@@ -24,7 +24,7 @@ set_target_properties(nxlua PROPERTIES
 
 include(GenerateExportHeader)
 generate_export_header(nxlua
-	EXPORT_FILE_NAME include/nxlua/api.h
+	EXPORT_FILE_NAME include/lua/api.h
 	EXPORT_MACRO_NAME LUA_API
 	DEPRECATED_MACRO_NAME DEPRECATED_API
 	INCLUDE_GUARD_NAME NXLUA_API_H

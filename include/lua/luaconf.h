@@ -8,8 +8,9 @@
 #define LCONFIG_H
 
 #include <limits.h>
+#include <stdint.h>
 #include <stddef.h>
-#include <nxlua/api.h>
+#include <lua/api.h>
 
 #define LUA_NUMBER  double
 #define LUA_INTEGER ptrdiff_t
