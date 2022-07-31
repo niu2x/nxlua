@@ -36,5 +36,6 @@
 #define LUAI_MAXCCALLS   200
 #define LUAI_MAXVARS     200
 #define LUAI_MAXUPVALUES 60
+#define LUAL_BUFFERSIZE  1024
 
 #endif
