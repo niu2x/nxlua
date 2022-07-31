@@ -4,3 +4,6 @@
 #include "lobject.h"
 #include "lzio.h"
 #include "lstate.h"
+#include "lfunc.h"
+#include "ldo.h"
+#include "llex.h"
