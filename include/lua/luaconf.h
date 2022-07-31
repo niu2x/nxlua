@@ -31,4 +31,10 @@
 
 #define LUA_IDSIZE 60
 
+#define LUAI_MAXCALLS    20000
+#define LUAI_MAXCSTACK   8000
+#define LUAI_MAXCCALLS   200
+#define LUAI_MAXVARS     200
+#define LUAI_MAXUPVALUES 60
+
 #endif
