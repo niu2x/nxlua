@@ -38,6 +38,6 @@
 #define LUAI_MAXUPVALUES 60
 #define LUAL_BUFFERSIZE  1024
 
-#define LUAI_BITSINT (sizeof(int) * 8)
+// #define LUAI_BITSINT 32
 
 #endif

@@ -7,4 +7,5 @@
 #include "lfunc.h"
 #include "ldo.h"
 #include "llex.h"
-#include "lparse.h"
+#include "lparser.h"
+#include "lcode.h"
