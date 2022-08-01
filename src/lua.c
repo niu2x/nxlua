@@ -9,3 +9,4 @@
 #include "llex.h"
 #include "lparser.h"
 #include "lcode.h"
+#include "ldebug.h"
