@@ -43,4 +43,7 @@
 
 #define lua_assert(c) assert((c))
 
+#define LUA_QL(x) "'" x "'"
+#define LUA_QS    LUA_QL("%s")
+
 #endif
