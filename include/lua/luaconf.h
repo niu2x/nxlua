@@ -10,6 +10,7 @@
 #include <limits.h>
 #include <stdint.h>
 #include <stddef.h>
+#include <assert.h>
 #include <lua/api.h>
 
 #define LUA_NUMBER  double
@@ -39,5 +40,7 @@
 #define LUAL_BUFFERSIZE  1024
 
 // #define LUAI_BITSINT 32
+
+#define lua_assert(c) assert((c))
 
 #endif
