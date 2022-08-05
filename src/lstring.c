@@ -87,5 +87,6 @@ TString* luaS_newlstr(lua_State* L, const char* str, size_t l)
             return ts;
         }
     }
-    return newlstr(L, str, l, h); /* not found */
+    // not found
+    return newlstr(L, str, l, h);
 }
