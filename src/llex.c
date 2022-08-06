@@ -474,3 +474,24 @@ static int llex(LexState* ls, SemInfo* seminfo)
         }
     }
 }
+
+void luaX_next(LexState* ls)
+{
+    ls->lastline = ls->linenumber;
+    /* is there a look-ahead token? */
+    if (ls->lookahead.token != TK_EOS) {
+        /* use this one */
+        ls->t = ls->lookahead;
+        /* and discharge it */
+        ls->lookahead.token = TK_EOS;
+    } else {
+        /* read next token */
+        ls->t.token = llex(ls, &ls->t.seminfo);
+    }
+}
+
+void luaX_lookahead(LexState* ls)
+{
+    lua_assert(ls->lookahead.token == TK_EOS);
+    ls->lookahead.token = llex(ls, &ls->lookahead.seminfo);
+}
