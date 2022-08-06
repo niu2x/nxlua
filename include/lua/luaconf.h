@@ -12,6 +12,7 @@
 #include <stddef.h>
 #include <assert.h>
 #include <lua/api.h>
+#include <math.h>
 
 #define LUA_NUMBER  double
 #define LUA_INTEGER ptrdiff_t
@@ -45,5 +46,20 @@
 
 #define LUA_QL(x) "'" x "'"
 #define LUA_QS    LUA_QL("%s")
+
+#define luai_numadd(a, b) ((a) + (b))
+#define luai_numsub(a, b) ((a) - (b))
+#define luai_nummul(a, b) ((a) * (b))
+#define luai_numdiv(a, b) ((a) / (b))
+#define luai_nummod(a, b) ((a)-floor((a) / (b)) * (b))
+#define luai_numpow(a, b) (pow(a, b))
+#define luai_numunm(a)    (-(a))
+#define luai_numeq(a, b)  ((a) == (b))
+#define luai_numlt(a, b)  ((a) < (b))
+#define luai_numle(a, b)  ((a) <= (b))
+#define luai_numisnan(a)  (!luai_numeq((a), (a)))
+
+#define lua_number2int(i, d)     ((i) = (int)(d))
+#define lua_number2integer(i, d) ((i) = (lua_Integer)(d))
 
 #endif
