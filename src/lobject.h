@@ -256,8 +256,10 @@ typedef struct Proto {
 
 typedef struct LocVar {
     TString* varname;
-    int startpc; /* first point where variable is active */
-    int endpc; /* first point where variable is dead */
+    // first point where variable is active
+    int startpc;
+    // first point where variable is dead
+    int endpc;
 } LocVar;
 
 /*

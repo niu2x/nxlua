@@ -144,7 +144,8 @@ typedef enum {
     /*----------------------------------------------------------------------
     name		args	description
     ------------------------------------------------------------------------*/
-    OP_MOVE, /*	A B	R(A) := R(B)					*/
+    // A B R(A) := R(B)
+    OP_MOVE,
     OP_LOADK, /*	A Bx	R(A) := Kst(Bx)					*/
     OP_LOADBOOL, /*	A B C	R(A) := (Bool)B; if (C) pc++			*/
     OP_LOADNIL, /*	A B	R(A) := ... := R(B) := nil			*/
@@ -184,7 +185,8 @@ typedef enum {
 
     OP_CALL, /*	A B C	R(A), ... ,R(A+C-2) := R(A)(R(A+1), ... ,R(A+B-1)) */
     OP_TAILCALL, /*	A B C	return R(A)(R(A+1), ... ,R(A+B-1))		*/
-    OP_RETURN, /*	A B	return R(A), ... ,R(A+B-2)	(see note)	*/
+    // A B return R(A), ... ,R(A+B-2)  (see note)
+    OP_RETURN,
 
     OP_FORLOOP, /*	A sBx	R(A)+=R(A+2);
                  if R(A) <?= R(A+1) then { pc+=sBx; R(A+3)=R(A) }*/
