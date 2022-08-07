@@ -522,6 +522,82 @@ static void primaryexp(LexState* ls, expdesc* v)
     }
 }
 
+struct ConsControl {
+    /* last list item read */
+    expdesc v;
+    /* table descriptor */
+    expdesc* t;
+    /* total number of `record' elements */
+    int nh;
+    /* total number of array elements */
+    int na;
+    /* number of array elements pending to be stored */
+    int tostore;
+};
+
+static void closelistfield(FuncState* fs, struct ConsControl* cc)
+{
+    if (cc->v.k == VVOID)
+        return; /* there is no list item */
+    luaK_exp2nextreg(fs, &cc->v);
+    cc->v.k = VVOID;
+    if (cc->tostore == LFIELDS_PER_FLUSH) {
+        luaK_setlist(fs, cc->t->u.s.info, cc->na, cc->tostore); /* flush */
+        cc->tostore = 0; /* no more items pending */
+    }
+}
+
+static void listfield(LexState* ls, struct ConsControl* cc)
+{
+    expr(ls, &cc->v);
+    luaY_checklimit(ls->fs, cc->na, MAX_INT, "items in a constructor");
+    cc->na++;
+    cc->tostore++;
+}
+
+static void constructor(LexState* ls, expdesc* t)
+{
+    /* constructor -> ?? */
+    FuncState* fs = ls->fs;
+    int line = ls->linenumber;
+    int pc = luaK_codeABC(fs, OP_NEWTABLE, 0, 0, 0);
+    struct ConsControl cc;
+    cc.na = cc.nh = cc.tostore = 0;
+    cc.t = t;
+    init_exp(t, VRELOCABLE, pc);
+    init_exp(&cc.v, VVOID, 0); /* no value (yet) */
+    luaK_exp2nextreg(ls->fs, t); /* fix it at stack top (for gc) */
+    checknext(ls, '{');
+    do {
+        lua_assert(cc.v.k == VVOID || cc.tostore > 0);
+        if (ls->t.token == '}')
+            break;
+        closelistfield(fs, &cc);
+        switch (ls->t.token) {
+            case TK_NAME: { /* may be listfields or recfields */
+                luaX_lookahead(ls);
+                if (ls->lookahead.token != '=') /* expression? */
+                    listfield(ls, &cc);
+                else
+                    recfield(ls, &cc);
+                break;
+            }
+            case '[': { /* constructor_item -> recfield */
+                recfield(ls, &cc);
+                break;
+            }
+            default: { /* constructor_part -> listfield */
+                listfield(ls, &cc);
+                break;
+            }
+        }
+    } while (testnext(ls, ',') || testnext(ls, ';'));
+    check_match(ls, '}', '{', line);
+    lastlistfield(fs, &cc);
+    SETARG_B(fs->f->code[pc], luaO_int2fb(cc.na)); /* set initial array size */
+    SETARG_C(fs->f->code[pc], luaO_int2fb(cc.nh)); /* set initial table size */
+}
+
 static void simpleexp(LexState* ls, expdesc* v)
 {
     /* simpleexp -> NUMBER | STRING | NIL | true | false | ... |

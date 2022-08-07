@@ -195,6 +195,138 @@ void luaK_prefix(FuncState* fs, UnOpr op, expdesc* e)
     }
 }
 
+static void freeexp(FuncState* fs, expdesc* e)
+{
+    if (e->k == VNONRELOC)
+        freereg(fs, e->u.s.info);
+}
+
+void luaK_reserveregs(FuncState* fs, int n)
+{
+    luaK_checkstack(fs, n);
+    fs->freereg += n;
+}
+
+void luaK_nil(FuncState* fs, int from, int n)
+{
+    Instruction* previous;
+    // no jumps to current position?
+    if (fs->pc > fs->lasttarget) {
+        // function start?
+        if (fs->pc == 0) {
+            if (from >= fs->nactvar)
+                // positions are already clean
+                return;
+        } else {
+            previous = &fs->f->code[fs->pc - 1];
+            if (GET_OPCODE(*previous) == OP_LOADNIL) {
+                int pfrom = GETARG_A(*previous);
+                int pto = GETARG_B(*previous);
+                if (pfrom <= from && from <= pto + 1) { /* can connect both? */
+                    if (from + n - 1 > pto)
+                        SETARG_B(*previous, from + n - 1);
+                    return;
+                }
+            }
+        }
+    }
+    // else no optimization
+    luaK_codeABC(fs, OP_LOADNIL, from, from + n - 1, 0);
+}
+
+int luaK_codeABx(FuncState* fs, OpCode o, int a, unsigned int bc)
+{
+    lua_assert(getOpMode(o) == iABx || getOpMode(o) == iAsBx);
+    lua_assert(getCMode(o) == OpArgN);
+    return luaK_code(fs, CREATE_ABx(o, a, bc), fs->ls->lastline);
+}
+
+static void discharge2reg(FuncState* fs, expdesc* e, int reg)
+{
+    luaK_dischargevars(fs, e);
+    switch (e->k) {
+        case VNIL: {
+            luaK_nil(fs, reg, 1);
+            break;
+        }
+        case VFALSE:
+        case VTRUE: {
+            luaK_codeABC(fs, OP_LOADBOOL, reg, e->k == VTRUE, 0);
+            break;
+        }
+        case VK: {
+            luaK_codeABx(fs, OP_LOADK, reg, e->u.s.info);
+            break;
+        }
+        case VKNUM: {
+            luaK_codeABx(fs, OP_LOADK, reg, luaK_numberK(fs, e->u.nval));
+            break;
+        }
+        case VRELOCABLE: {
+            Instruction* pc = &getcode(fs, e);
+            SETARG_A(*pc, reg);
+            break;
+        }
+        case VNONRELOC: {
+            if (reg != e->u.s.info)
+                luaK_codeABC(fs, OP_MOVE, reg, e->u.s.info, 0);
+            break;
+        }
+        default: {
+            lua_assert(e->k == VVOID || e->k == VJMP);
+            return; /* nothing to do... */
+        }
+    }
+    e->u.s.info = reg;
+    e->k = VNONRELOC;
+}
+
+static void exp2reg(FuncState* fs, expdesc* e, int reg)
+{
+    discharge2reg(fs, e, reg);
+    if (e->k == VJMP)
+        luaK_concat(fs, &e->t, e->u.s.info); /* put this jump in `t' list */
+    if (hasjumps(e)) {
+        int final; /* position after whole expression */
+        int p_f = NO_JUMP; /* position of an eventual LOAD false */
+        int p_t = NO_JUMP; /* position of an eventual LOAD true */
+        if (need_value(fs, e->t) || need_value(fs, e->f)) {
+            int fj = (e->k == VJMP) ? NO_JUMP : luaK_jump(fs);
+            p_f = code_label(fs, reg, 0, 1);
+            p_t = code_label(fs, reg, 1, 0);
+            luaK_patchtohere(fs, fj);
+        }
+        final = luaK_getlabel(fs);
+        patchlistaux(fs, e->f, final, reg, p_f);
+        patchlistaux(fs, e->t, final, reg, p_t);
+    }
+    e->f = e->t = NO_JUMP;
+    e->u.s.info = reg;
+    e->k = VNONRELOC;
+}
+
+void luaK_setlist(FuncState* fs, int base, int nelems, int tostore)
+{
+    int c = (nelems - 1) / LFIELDS_PER_FLUSH + 1;
+    int b = (tostore == LUA_MULTRET) ? 0 : tostore;
+    lua_assert(tostore != 0);
+    if (c <= MAXARG_C)
+        luaK_codeABC(fs, OP_SETLIST, base, b, c);
+    else {
+        luaK_codeABC(fs, OP_SETLIST, base, b, 0);
+        luaK_code(fs, cast(Instruction, c), fs->ls->lastline);
+    }
+    fs->freereg = base + 1; /* free registers with list values */
+}
+
+void luaK_exp2nextreg(FuncState* fs, expdesc* e)
+{
+    luaK_dischargevars(fs, e);
+    freeexp(fs, e);
+    luaK_reserveregs(fs, 1);
+    exp2reg(fs, e, fs->freereg - 1);
+}
+
 int luaK_exp2anyreg(FuncState* fs, expdesc* e)
 {
     luaK_dischargevars(fs, e);
