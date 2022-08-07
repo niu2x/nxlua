@@ -9,6 +9,7 @@
 
 #include <limits.h>
 #include <stdint.h>
+#include <stdio.h>
 #include <stddef.h>
 #include <assert.h>
 #include <lua/api.h>
@@ -61,5 +62,11 @@
 
 #define lua_number2int(i, d)     ((i) = (int)(d))
 #define lua_number2integer(i, d) ((i) = (lua_Integer)(d))
+
+#define LUAI_MAXNUMBER2STR 32 /* 16 digits, sign, point, and \0 */
+
+#define LUA_NUMBER_FMT       "%.14g"
+#define lua_number2str(s, n) sprintf((s), LUA_NUMBER_FMT, (n))
+#define lua_str2number(s, p) strtod((s), (p))
 
 #endif
