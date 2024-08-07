@@ -7,4 +7,4 @@ target_sources(lpeg PRIVATE
 	"lpvm.c"
 )
 
-target_link_libraries(lpeg lua-5.1.5)
+target_link_libraries(lpeg lua)

@@ -115,7 +115,7 @@ static int run(lua_State* L, const char* input_file)
 static void open_libs(lua_State* L)
 {
     luaL_openlibs(L);
-    luaopen_bit(L);
+    // luaopen_bit(L);
     luaopen_cjson(L);
     tolua_libs_open(L);
     luaopen_luv(L);
@@ -173,17 +173,6 @@ int main(int argc, char* argv[], char* env[])
 
     main_L = nullptr;
     lua_close(L);
-
-    // nxlua::image_t image;
-    // image.load("./1.png");
-
-    // nxlua::image_t image2;
-    // image2.resize(128, 128);
-
-    // nxlua::image_t::resample_subimage(&image, &image2, 0, 0, image.width(),
-    // image.height(), 0);
-
-    // image2.save("./2.png");
 
     return exit_code;
 }

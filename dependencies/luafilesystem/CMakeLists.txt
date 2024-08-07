@@ -4,4 +4,4 @@ target_sources(luafilesystem PRIVATE
 )
 
 target_include_directories(luafilesystem PUBLIC "${CMAKE_CURRENT_LIST_DIR}/src")
-target_link_libraries(luafilesystem lua-5.1.5)
+target_link_libraries(luafilesystem lua)

@@ -8,8 +8,6 @@ target_sources(nxlua PRIVATE
 	${c_source}
 )
 target_link_libraries(nxlua 
-	luabitop
-	lua-5.1.5 
 	linenoise
 	cjson
 	uv_a
@@ -21,6 +19,7 @@ target_link_libraries(nxlua
 	lpeg
 	libcurl
 	luaxml
+	lua
 )
 
 if("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")

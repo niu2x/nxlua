@@ -13,5 +13,5 @@ set(LUV_VERSION ${LUV_VERSION_MAJOR}.${LUV_VERSION_MINOR}.${LUV_VERSION_PATCH})
 
 
 add_library(luv_a STATIC src/luv.c)
-target_link_libraries(luv_a PUBLIC lua-5.1.5 uv_a)
+target_link_libraries(luv_a PUBLIC lua uv_a)
 target_include_directories(luv_a PUBLIC ${CMAKE_CURRENT_LIST_DIR}/deps/lua-compat-5.3/c-api)

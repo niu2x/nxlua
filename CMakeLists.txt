@@ -33,9 +33,9 @@ if("${NXLUA_GIT_HASH}" STREQUAL "")
 	set(NXLUA_GIT_HASH "unknown")
 endif()
 
-add_subdirectory(dependencies/lua-5.1.5)
+add_subdirectory(3rd)
+
 add_subdirectory(dependencies/cpp-linenoise)
-add_subdirectory(dependencies/LuaBitOp-1.0.2)
 add_subdirectory(dependencies/lua-cjson)
 target_compile_definitions(cjson PRIVATE -DENABLE_CJSON_GLOBAL)
 add_subdirectory(dependencies/libuv EXCLUDE_FROM_ALL)
