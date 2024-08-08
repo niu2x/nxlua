@@ -43,7 +43,6 @@ add_subdirectory(dependencies/luv)
 add_subdirectory(dependencies/openssl-3.0.2)
 add_subdirectory(dependencies/zlib-1.2.11)
 add_subdirectory(dependencies/luafilesystem)
-add_subdirectory(dependencies/lpeg-1.0.2)
 add_subdirectory(dependencies/luaxml)
 
 set(BUILD_TESTING OFF)

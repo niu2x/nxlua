@@ -9,8 +9,6 @@ luas := PreFix.lua \
 		print.lua \
 		F.lua \
 		welcome.lua \
-		re.lua \
-		lupa.lua \
 		dhttp.lua \
 		deferred.lua
 

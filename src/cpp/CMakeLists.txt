@@ -16,7 +16,6 @@ target_link_libraries(nxlua
 	ssl
 	zlibstatic
 	luafilesystem
-	lpeg
 	libcurl
 	luaxml
 	lua
