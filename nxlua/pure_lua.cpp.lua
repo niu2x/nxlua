@@ -35,7 +35,7 @@ luacode_bytearray = table.concat(luacode_bytearray, ',')
 
 local output = lupa.expand([====[
 #include "{{modulename}}.h"
-#include "niu2x/pipe.h"
+#include "core/pipe.h"
 
 static const uint8_t luacode_bytearray[] = {
 	{{luacode_bytearray}}

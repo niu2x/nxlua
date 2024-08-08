@@ -48,7 +48,7 @@ add_subdirectory(dependencies/luaxml)
 set(BUILD_TESTING OFF)
 add_subdirectory(dependencies/curl-7.83.1)
 
-add_subdirectory(src/cpp)
+add_subdirectory(src)
 
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 include(package)
